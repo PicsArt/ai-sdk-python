@@ -1,0 +1,32 @@
+{
+  "source": "fflate deflateSync + JSON.stringify, as pa-gen-ai-sdk src/core/deeplink/codec.ts",
+  "cases": [
+    {
+      "payload": {
+        "v": 1,
+        "m": "veo-3.1",
+        "p": "закат 🌅 \"q\" \\ \n",
+        "o": {
+          "aspectRatio": "9:16",
+          "scale": 2,
+          "f": 1.5,
+          "n": null,
+          "big": 1e+21,
+          "tiny": 1e-07
+        }
+      },
+      "encoded": "q1YqU7Iy1FHKVbJSKkvN1zXWM1TSUSoA8i5sv7Dhwq4LGy42KXyY39OqEKNUGKOkEBOjEJMHVJGvZFWtlFhckJpcEpRYkgnkKllaGZoBZYqTE3NSlayMdJTSgCbrmeoo5SlZ5ZXm5OgoJWWmA4VStY2AFpZk5lWCOLrmtbUA"
+    },
+    {
+      "payload": {
+        "v": 1,
+        "m": "gemini-3-pro-image",
+        "i": [
+          "https://cdn.picsart.com/a.png"
+        ],
+        "np": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+      },
+      "encoded": "7ctNCoAgEAbQu3xrf4h2XiVaiInNYsZBJYLo7nWPevt34UCYDBgBJTMJ2dlqq5Y4lgwDQliwj6E9eJ82cUqpxzZcquyjUylYDUTff_4-B_cD"
+    }
+  ]
+}

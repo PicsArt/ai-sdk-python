@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Local env files (hold secrets like PICSART_API_KEY) — never commit.
+.env
+.env.local
+.env.*.local
+
+.DS_Store
+.idea/
+.vscode/
