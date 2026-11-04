@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "picsart-ai-sdk"
-version = "0.1.0"
+version = "0.2.0"
 description = "Python SDK for 100+ AI models — image, video, audio, and text generation with Picsart (parity with @picsart/ai-sdk)"
 readme = "README.md"
 license = "MIT"

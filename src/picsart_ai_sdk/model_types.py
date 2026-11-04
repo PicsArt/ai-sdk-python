@@ -19,6 +19,8 @@ __all__ = [
     "BytedanceOmnihumanV15Input",
     "BytedanceOmnihumanV20Input",
     "BytedanceVideoEnhanceInput",
+    "BytedanceVideoUpscalerInput",
+    "CaptionsaiVideoCaptionsInput",
     "ClaudeFable51Input",
     "ClaudeFable5Input",
     "ClaudeHaiku45Input",
@@ -36,6 +38,7 @@ __all__ = [
     "ElevenDialogueV4Input",
     "ElevenDubbingInput",
     "ElevenMultilingualStsV2Input",
+    "ElevenMultilingualV2Input",
     "ElevenSpeechToTextInput",
     "ElevenStsV2Input",
     "ElevenTextToDialogueInput",
@@ -46,6 +49,7 @@ __all__ = [
     "ElevenVoiceCreateInput",
     "ElevenVoiceDesignV2Input",
     "ElevenVoiceDesignV3Input",
+    "ElevenVoiceRemixInput",
     "ElevenlabsMusicV2Input",
     "ElevenlabsSfxInput",
     "Flux2FlexInput",
@@ -56,6 +60,8 @@ __all__ = [
     "Flux3MaxInput",
     "Flux3MaxKeyframesInput",
     "Flux3VideoInput",
+    "FluxKontextMaxInput",
+    "FluxKontextProInput",
     "FluxVideoEditInput",
     "FluxVideoUpscaleInput",
     "Gemini25FlashImageInput",
@@ -75,6 +81,7 @@ __all__ = [
     "Gemini4ArgonInput",
     "GeminiNanoBanana21Input",
     "GeminiOmni11FlashPreviewInput",
+    "GeminiOmni12FlashInput",
     "GeminiOmniFlashPreviewInput",
     "Gpt41MiniInput",
     "Gpt41NanoInput",
@@ -94,8 +101,11 @@ __all__ = [
     "Gpt6LunaInput",
     "Gpt6SolInput",
     "GptImage15Input",
+    "GptImage1Input",
     "GptImage25FlareInput",
     "GptImage25SunburstInput",
+    "GptImage26FlareInput",
+    "GptImage26FlareMiniInput",
     "GptImage2Input",
     "Grok47Input",
     "GrokEditVideoInput",
@@ -107,6 +117,7 @@ __all__ = [
     "GrokImagineVideo15LiteInput",
     "GrokImagineVideoInput",
     "GrokTtsInput",
+    "Hailuo02Input",
     "Hailuo23FastInput",
     "Hailuo23FastProInput",
     "Hailuo23Input",
@@ -134,17 +145,24 @@ __all__ = [
     "KimiK3Input",
     "Kling30ImageInput",
     "KlingAvatarInput",
+    "KlingElementsInput",
     "KlingMotionControlInput",
     "KlingMotionControlV3Input",
+    "KlingMultiImageV21Input",
     "KlingO1ImageInput",
     "KlingT2aInput",
+    "KlingV21ImageInput",
+    "KlingV26Input",
     "KlingV2aInput",
     "KlingV3Input",
     "KlingV3OmniInput",
     "KlingV3TurboInput",
+    "KlingV4FlashInput",
+    "KlingV4FlashOmniInput",
     "KlingV4Input",
     "KlingV4OmniInput",
     "KlingVideoEffectsInput",
+    "KlingVideoO1Input",
     "Ltx23A2vInput",
     "LtxV23ExtendInput",
     "LtxV23FastInput",
@@ -162,6 +180,7 @@ __all__ = [
     "Lyria35Input",
     "Lyria3ClipInput",
     "Lyria3ProInput",
+    "MacaronCookieInput",
     "MinimaxH3ContextIrInput",
     "MinimaxH3HighspeedInput",
     "MinimaxH3Input",
@@ -188,6 +207,7 @@ __all__ = [
     "PicsartFlowInput",
     "PicsartFlowVideoInput",
     "PicsartFlux2KleinInput",
+    "PicsartHidreamT2iInput",
     "PicsartQwenImageEditInput",
     "PicsartQwenMakeupInput",
     "PicsartSanaSprintV1Input",
@@ -199,7 +219,9 @@ __all__ = [
     "PixverseV6FusionInput",
     "PixverseV6ImageInput",
     "PixverseV6Input",
+    "QwenImage2Input",
     "QwenImage2ProInput",
+    "QwenImage30Input",
     "QwenImage30ProInput",
     "RecraftCreativeUpscaleInput",
     "RecraftCrispUpscaleInput",
@@ -226,13 +248,17 @@ __all__ = [
     "Recraftv4StylesProVectorInput",
     "Recraftv4StylesVectorInput",
     "Recraftv4VectorInput",
+    "ReveInput",
     "RunwayAleph2Input",
     "RunwayAvatarVideoInput",
+    "RunwayGen3aTurboInput",
     "RunwayGen45Input",
+    "RunwayGen4AlephInput",
     "RunwayGen4RefInput",
     "Sam3VideoInput",
     "SeedAudio10Input",
     "SeedAudio10MultilingualInput",
+    "Seedance15ProInput",
     "Seedance20FastInput",
     "Seedance20FastVideoEditInput",
     "Seedance20FastVideoExtendInput",
@@ -242,9 +268,17 @@ __all__ = [
     "Seedance20MiniVideoExtendInput",
     "Seedance20VideoEditInput",
     "Seedance20VideoExtendInput",
+    "Seedance20WithoutModerationInput",
+    "Seedance20WithoutModerationVideoEditInput",
+    "Seedance20WithoutModerationVideoExtendInput",
     "Seedance25Input",
     "Seedance25VideoEditInput",
     "Seedance25VideoExtendInput",
+    "Seedance25WithoutModerationInput",
+    "Seedance25WithoutModerationVideoEditInput",
+    "Seedance25WithoutModerationVideoExtendInput",
+    "SeedanceI2vInput",
+    "Seedream40Input",
     "Seedream45Input",
     "Seedream47Input",
     "Seedream50FlashInput",
@@ -261,6 +295,7 @@ __all__ = [
     "Veo31FastInput",
     "Veo31Input",
     "Veo31LiteInput",
+    "Wan26ImageInput",
     "Wan27I2vInput",
     "Wan27R2vInput",
     "Wan27T2vInput",
@@ -316,6 +351,23 @@ BytedanceVideoEnhanceInput = TypedDict(
         "fps": NotRequired[Literal[30, 60, 120]],
         "scene": NotRequired[Literal["common", "ugc", "short_series", "aigc", "old_film"]],
         "bitrateLevel": NotRequired[Literal["low", "medium", "high"]],
+    },
+)
+
+
+BytedanceVideoUpscalerInput = TypedDict(
+    "BytedanceVideoUpscalerInput",
+    {
+        "videoUrl": str,
+    },
+)
+
+
+CaptionsaiVideoCaptionsInput = TypedDict(
+    "CaptionsaiVideoCaptionsInput",
+    {
+        "videoUrl": str,
+        "templateId": NotRequired[str],
     },
 )
 
@@ -499,6 +551,21 @@ ElevenMultilingualStsV2Input = TypedDict(
 )
 
 
+ElevenMultilingualV2Input = TypedDict(
+    "ElevenMultilingualV2Input",
+    {
+        "prompt": str,
+        "voiceId": NotRequired[str],
+        "stability": NotRequired[float],
+        "similarityBoost": NotRequired[float],
+        "styleExaggeration": NotRequired[float],
+        "speed": NotRequired[float],
+        "useSpeakerBoost": NotRequired[bool],
+        "withTimestamps": NotRequired[bool],
+    },
+)
+
+
 ElevenSpeechToTextInput = TypedDict(
     "ElevenSpeechToTextInput",
     {
@@ -617,6 +684,15 @@ ElevenVoiceDesignV2Input = TypedDict(
 ElevenVoiceDesignV3Input = TypedDict(
     "ElevenVoiceDesignV3Input",
     {
+        "prompt": str,
+    },
+)
+
+
+ElevenVoiceRemixInput = TypedDict(
+    "ElevenVoiceRemixInput",
+    {
+        "voiceId": str,
         "prompt": str,
     },
 )
@@ -747,6 +823,28 @@ Flux3VideoInput = TypedDict(
         "generateAudio": NotRequired[bool],
         "safetyTolerance": NotRequired[float],
         "draft": NotRequired[bool],
+    },
+)
+
+
+FluxKontextMaxInput = TypedDict(
+    "FluxKontextMaxInput",
+    {
+        "prompt": str,
+        "aspectRatio": NotRequired[Literal["1:1", "16:9", "9:16", "4:3", "3:4", "21:9", "9:21"]],
+        "count": NotRequired[Literal[1, 2, 4, 6, 8, 10]],
+        "imageUrls": NotRequired[list[str]],
+    },
+)
+
+
+FluxKontextProInput = TypedDict(
+    "FluxKontextProInput",
+    {
+        "prompt": str,
+        "aspectRatio": NotRequired[Literal["1:1", "16:9", "9:16", "4:3", "3:4", "21:9", "9:21"]],
+        "count": NotRequired[Literal[1, 2, 4, 6, 8, 10]],
+        "imageUrls": NotRequired[list[str]],
     },
 )
 
@@ -1055,6 +1153,23 @@ GeminiOmni11FlashPreviewInput = TypedDict(
 )
 
 
+GeminiOmni12FlashInput = TypedDict(
+    "GeminiOmni12FlashInput",
+    {
+        "prompt": str,
+        "aspectRatio": NotRequired[Literal["16:9", "9:16"]],
+        "resolution": NotRequired[Literal["360p", "720p", "1080p", "4k"]],
+        "duration": NotRequired[Literal[3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]],
+        "startFrame": NotRequired[str],
+        "endFrame": NotRequired[str],
+        "imageUrls": NotRequired[list[str]],
+        "videoUrl": NotRequired[str],
+        "videoUrls": NotRequired[list[str]],
+        "task": NotRequired[Literal["edit", "extend"]],
+    },
+)
+
+
 GeminiOmniFlashPreviewInput = TypedDict(
     "GeminiOmniFlashPreviewInput",
     {
@@ -1233,6 +1348,20 @@ Gpt61TerraInput = TypedDict(
 )
 
 
+GptImage1Input = TypedDict(
+    "GptImage1Input",
+    {
+        "prompt": str,
+        "aspectRatio": NotRequired[Literal["1:1", "3:2", "2:3", "16:9", "9:16", "4:3", "3:4"]],
+        "quality": NotRequired[Literal["high", "medium", "low"]],
+        "background": NotRequired[Literal["opaque", "transparent"]],
+        "outputFormat": NotRequired[Literal["png", "jpeg", "webp"]],
+        "count": NotRequired[Literal[1, 2, 4, 6, 8, 10]],
+        "imageUrls": NotRequired[list[str]],
+    },
+)
+
+
 GptImage15Input = TypedDict(
     "GptImage15Input",
     {
@@ -1284,6 +1413,40 @@ GptImage25SunburstInput = TypedDict(
         "resolution": NotRequired[Literal["1K", "2K", "4K"]],
         "size": NotRequired[str],
         "quality": NotRequired[Literal["max", "xhigh", "high", "medium", "low"]],
+        "background": NotRequired[Literal["opaque", "transparent"]],
+        "outputFormat": NotRequired[Literal["png", "jpeg", "webp"]],
+        "count": NotRequired[Literal[1, 2, 4, 6, 8, 10]],
+        "imageUrls": NotRequired[list[str]],
+    },
+)
+
+
+GptImage26FlareInput = TypedDict(
+    "GptImage26FlareInput",
+    {
+        "prompt": str,
+        "aspectRatio": NotRequired[Literal["1:1", "3:2", "2:3", "16:9", "9:16", "4:3", "3:4", "auto"]],
+        "resolution": NotRequired[Literal["1K", "2K", "4K"]],
+        "size": NotRequired[str],
+        "reasoningEffort": NotRequired[Literal["max", "xhigh", "high", "medium", "low"]],
+        "temperature": NotRequired[float],
+        "background": NotRequired[Literal["opaque", "transparent"]],
+        "outputFormat": NotRequired[Literal["png", "jpeg", "webp"]],
+        "count": NotRequired[Literal[1, 2, 4, 6, 8, 10]],
+        "imageUrls": NotRequired[list[str]],
+    },
+)
+
+
+GptImage26FlareMiniInput = TypedDict(
+    "GptImage26FlareMiniInput",
+    {
+        "prompt": str,
+        "aspectRatio": NotRequired[Literal["1:1", "3:2", "2:3", "16:9", "9:16", "4:3", "3:4", "auto"]],
+        "resolution": NotRequired[Literal["1K", "2K", "4K"]],
+        "size": NotRequired[str],
+        "reasoningEffort": NotRequired[Literal["max", "xhigh", "high", "medium", "low"]],
+        "temperature": NotRequired[float],
         "background": NotRequired[Literal["opaque", "transparent"]],
         "outputFormat": NotRequired[Literal["png", "jpeg", "webp"]],
         "count": NotRequired[Literal[1, 2, 4, 6, 8, 10]],
@@ -1401,6 +1564,20 @@ GrokTtsInput = TypedDict(
         "accent": NotRequired[str],
         "prompt": str,
         "voiceId": NotRequired[str],
+    },
+)
+
+
+Hailuo02Input = TypedDict(
+    "Hailuo02Input",
+    {
+        "prompt": str,
+        "enhancePrompt": NotRequired[bool],
+        "resolution": NotRequired[Literal["512P", "768P", "1080P"]],
+        "duration": NotRequired[Literal[6, 10]],
+        "startFrame": NotRequired[str],
+        "endFrame": NotRequired[str],
+        "imageUrls": NotRequired[list[str]],
     },
 )
 
@@ -1728,6 +1905,19 @@ KlingAvatarInput = TypedDict(
 )
 
 
+KlingElementsInput = TypedDict(
+    "KlingElementsInput",
+    {
+        "elementName": str,
+        "elementDescription": str,
+        "referenceType": Literal["image_refer", "video_refer"],
+        "imageUrls": NotRequired[list[str]],
+        "videoUrl": NotRequired[str],
+        "elementVoiceId": NotRequired[str],
+    },
+)
+
+
 KlingMotionControlInput = TypedDict(
     "KlingMotionControlInput",
     {
@@ -1754,6 +1944,19 @@ KlingMotionControlV3Input = TypedDict(
 )
 
 
+KlingMultiImageV21Input = TypedDict(
+    "KlingMultiImageV21Input",
+    {
+        "prompt": NotRequired[str],
+        "aspectRatio": NotRequired[Literal["16:9", "9:16", "1:1", "21:9", "4:3", "3:2", "2:3", "3:4"]],
+        "count": NotRequired[Literal[1, 2, 3, 4, 5, 6, 7, 8, 9]],
+        "imageUrls": list[str],
+        "sceneImage": NotRequired[str],
+        "styleImage": NotRequired[str],
+    },
+)
+
+
 KlingO1ImageInput = TypedDict(
     "KlingO1ImageInput",
     {
@@ -1771,6 +1974,32 @@ KlingT2aInput = TypedDict(
     {
         "prompt": str,
         "duration": NotRequired[float],
+    },
+)
+
+
+KlingV21ImageInput = TypedDict(
+    "KlingV21ImageInput",
+    {
+        "prompt": str,
+        "aspectRatio": NotRequired[Literal["16:9", "9:16", "1:1", "21:9", "4:3", "3:2", "2:3", "3:4"]],
+        "count": NotRequired[Literal[1, 2, 3, 4, 5, 6, 7, 8, 9]],
+        "negativePrompt": NotRequired[str],
+        "imageUrls": NotRequired[list[str]],
+    },
+)
+
+
+KlingV26Input = TypedDict(
+    "KlingV26Input",
+    {
+        "prompt": str,
+        "aspectRatio": NotRequired[Literal["16:9", "9:16", "1:1"]],
+        "duration": NotRequired[Literal[5, 10]],
+        "startFrame": NotRequired[str],
+        "endFrame": NotRequired[str],
+        "negativePrompt": NotRequired[str],
+        "generateAudio": NotRequired[bool],
     },
 )
 
@@ -1896,6 +2125,40 @@ KlingV4Input = TypedDict(
 )
 
 
+KlingV4FlashInput = TypedDict(
+    "KlingV4FlashInput",
+    {
+        "prompt": str,
+        "aspectRatio": NotRequired[Literal["16:9", "9:16", "1:1", "21:9"]],
+        "duration": NotRequired[int],
+        "startFrame": NotRequired[str],
+    },
+)
+
+
+KlingV4FlashOmniElementList = TypedDict(
+    "KlingV4FlashOmniElementList",
+    {
+        "element_id": str,
+    },
+)
+
+
+KlingV4FlashOmniInput = TypedDict(
+    "KlingV4FlashOmniInput",
+    {
+        "prompt": str,
+        "aspectRatio": NotRequired[Literal["16:9", "9:16", "1:1", "21:9", "adaptive"]],
+        "duration": NotRequired[int],
+        "startFrame": NotRequired[str],
+        "imageUrls": NotRequired[list[str]],
+        "videoUrl": NotRequired[str],
+        "referType": NotRequired[Literal["feature", "base"]],
+        "elementList": NotRequired[list[KlingV4FlashOmniElementList]],
+    },
+)
+
+
 KlingV4OmniElementList = TypedDict(
     "KlingV4OmniElementList",
     {
@@ -1926,6 +2189,18 @@ KlingVideoEffectsInput = TypedDict(
     {
         "templateId": NotRequired[str],
         "imageUrls": list[str],
+    },
+)
+
+
+KlingVideoO1Input = TypedDict(
+    "KlingVideoO1Input",
+    {
+        "prompt": str,
+        "aspectRatio": NotRequired[Literal["16:9", "9:16", "1:1"]],
+        "duration": NotRequired[Literal[5, 10]],
+        "renderingSpeed": NotRequired[Literal["std", "pro"]],
+        "generateAudio": NotRequired[bool],
     },
 )
 
@@ -2147,6 +2422,23 @@ Lyria35Input = TypedDict(
     {
         "prompt": str,
         "imageUrls": NotRequired[list[str]],
+    },
+)
+
+
+MacaronCookieInput = TypedDict(
+    "MacaronCookieInput",
+    {
+        "prompt": str,
+        "aspectRatio": NotRequired[Literal["16:9", "9:16"]],
+        "resolution": NotRequired[Literal["360p", "720p", "1080p", "4k"]],
+        "duration": NotRequired[Literal[3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]],
+        "startFrame": NotRequired[str],
+        "endFrame": NotRequired[str],
+        "imageUrls": NotRequired[list[str]],
+        "videoUrl": NotRequired[str],
+        "videoUrls": NotRequired[list[str]],
+        "task": NotRequired[Literal["edit", "extend"]],
     },
 )
 
@@ -2494,6 +2786,15 @@ PicsartFlux2KleinInput = TypedDict(
 )
 
 
+PicsartHidreamT2iInput = TypedDict(
+    "PicsartHidreamT2iInput",
+    {
+        "prompt": str,
+        "aspectRatio": NotRequired[Literal["1:1", "5:3", "3:5", "4:3", "3:4"]],
+    },
+)
+
+
 PicsartQwenImageEditInput = TypedDict(
     "PicsartQwenImageEditInput",
     {
@@ -2613,6 +2914,16 @@ PixverseV6ImageInput = TypedDict(
 )
 
 
+QwenImage2Input = TypedDict(
+    "QwenImage2Input",
+    {
+        "prompt": str,
+        "count": NotRequired[Literal[1, 2, 4, 6, 8, 10]],
+        "imageUrls": NotRequired[list[str]],
+    },
+)
+
+
 QwenImage2ProInput = TypedDict(
     "QwenImage2ProInput",
     {
@@ -2623,6 +2934,22 @@ QwenImage2ProInput = TypedDict(
         "enhancePrompt": NotRequired[bool],
         "imageUrls": NotRequired[list[str]],
         "seed": NotRequired[int],
+    },
+)
+
+
+QwenImage30Input = TypedDict(
+    "QwenImage30Input",
+    {
+        "prompt": str,
+        "negativePrompt": NotRequired[str],
+        "resolution": NotRequired[Literal["2048x2048", "2688x1536", "1536x2688", "2368x1728", "1728x2368"]],
+        "count": NotRequired[Literal[1, 2, 4, 6]],
+        "enhancePrompt": NotRequired[bool],
+        "imageUrls": NotRequired[list[str]],
+        "seed": NotRequired[int],
+        "promptExtendMode": NotRequired[Literal["direct", "agent"]],
+        "enableThinking": NotRequired[bool],
     },
 )
 
@@ -2921,6 +3248,17 @@ Recraftv4VectorInput = TypedDict(
 )
 
 
+ReveInput = TypedDict(
+    "ReveInput",
+    {
+        "prompt": str,
+        "aspectRatio": NotRequired[Literal["16:9", "9:16", "1:1", "4:3", "3:4", "3:2", "2:3"]],
+        "count": NotRequired[Literal[1, 2, 4]],
+        "imageUrls": NotRequired[list[str]],
+    },
+)
+
+
 RunwayAleph2Input = TypedDict(
     "RunwayAleph2Input",
     {
@@ -2939,6 +3277,27 @@ RunwayAvatarVideoInput = TypedDict(
         "voiceId": NotRequired[str],
         "prompt": NotRequired[str],
         "audioUrl": NotRequired[str],
+    },
+)
+
+
+RunwayGen3aTurboInput = TypedDict(
+    "RunwayGen3aTurboInput",
+    {
+        "prompt": str,
+        "duration": NotRequired[Literal[5, 10]],
+        "aspectRatio": NotRequired[Literal["16:9", "9:16"]],
+        "startFrame": str,
+        "endFrame": NotRequired[str],
+    },
+)
+
+
+RunwayGen4AlephInput = TypedDict(
+    "RunwayGen4AlephInput",
+    {
+        "prompt": str,
+        "videoUrl": str,
     },
 )
 
@@ -3006,6 +3365,20 @@ SeedAudio10MultilingualInput = TypedDict(
         "loudnessRate": NotRequired[float],
         "pitchRate": NotRequired[float],
         "aigcWatermark": NotRequired[bool],
+    },
+)
+
+
+Seedance15ProInput = TypedDict(
+    "Seedance15ProInput",
+    {
+        "prompt": str,
+        "aspectRatio": NotRequired[Literal["16:9", "9:16", "1:1", "4:3", "3:4", "21:9", "adaptive"]],
+        "resolution": NotRequired[Literal["480p", "720p"]],
+        "duration": NotRequired[Literal[-1, 4, 5, 6, 7, 8, 9, 10, 11, 12]],
+        "generateAudio": NotRequired[bool],
+        "startFrame": NotRequired[str],
+        "endFrame": NotRequired[str],
     },
 )
 
@@ -3148,6 +3521,52 @@ Seedance20VideoExtendInput = TypedDict(
 )
 
 
+Seedance20WithoutModerationInput = TypedDict(
+    "Seedance20WithoutModerationInput",
+    {
+        "prompt": str,
+        "aspectRatio": NotRequired[Literal["16:9", "9:16", "1:1", "4:3", "3:4", "21:9", "adaptive"]],
+        "resolution": NotRequired[Literal["480p", "720p", "1080p", "4k"]],
+        "duration": NotRequired[Literal[-1, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]],
+        "generateAudio": NotRequired[bool],
+        "returnLastFrame": NotRequired[bool],
+        "imageUrls": NotRequired[list[str]],
+        "videoUrls": NotRequired[list[str]],
+        "audioUrls": NotRequired[list[str]],
+        "startFrame": NotRequired[str],
+        "endFrame": NotRequired[str],
+    },
+)
+
+
+Seedance20WithoutModerationVideoEditInput = TypedDict(
+    "Seedance20WithoutModerationVideoEditInput",
+    {
+        "prompt": str,
+        "aspectRatio": NotRequired[Literal["16:9", "9:16", "1:1", "4:3", "3:4", "21:9", "adaptive"]],
+        "resolution": NotRequired[Literal["480p", "720p", "1080p", "4k"]],
+        "duration": NotRequired[Literal[-1, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]],
+        "generateAudio": NotRequired[bool],
+        "returnLastFrame": NotRequired[bool],
+        "videoUrl": str,
+        "imageUrls": NotRequired[list[str]],
+    },
+)
+
+
+Seedance20WithoutModerationVideoExtendInput = TypedDict(
+    "Seedance20WithoutModerationVideoExtendInput",
+    {
+        "prompt": str,
+        "aspectRatio": NotRequired[Literal["16:9", "9:16", "1:1", "4:3", "3:4", "21:9", "adaptive"]],
+        "resolution": NotRequired[Literal["480p", "720p", "1080p", "4k"]],
+        "duration": NotRequired[Literal[-1, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]],
+        "generateAudio": NotRequired[bool],
+        "videoUrls": list[str],
+    },
+)
+
+
 Seedance25DraftTask = TypedDict(
     "Seedance25DraftTask",
     {
@@ -3208,6 +3627,95 @@ Seedance25VideoExtendInput = TypedDict(
         "colorDepth": NotRequired[Literal["10bit", "8bit"]],
         "draft": NotRequired[bool],
         "videoUrls": list[str],
+    },
+)
+
+
+Seedance25WithoutModerationDraftTask = TypedDict(
+    "Seedance25WithoutModerationDraftTask",
+    {
+        "id": str,
+    },
+)
+
+
+Seedance25WithoutModerationInput = TypedDict(
+    "Seedance25WithoutModerationInput",
+    {
+        "prompt": NotRequired[str],
+        "aspectRatio": NotRequired[Literal["16:9", "9:16", "1:1", "4:3", "3:4", "21:9", "adaptive"]],
+        "resolution": NotRequired[Literal["480p", "720p", "1080p"]],
+        "duration": NotRequired[Literal[-1, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]],
+        "generateAudio": NotRequired[bool],
+        "returnLastFrame": NotRequired[bool],
+        "outputFormat": NotRequired[Literal["mp4", "mov"]],
+        "colorDepth": NotRequired[Literal["10bit", "8bit"]],
+        "draft": NotRequired[bool],
+        "draftTask": NotRequired[Seedance25WithoutModerationDraftTask],
+        "omniReferenceTaskType": NotRequired[Literal["auto", "reference", "edit", "extend"]],
+        "imageUrls": NotRequired[list[str]],
+        "videoUrls": NotRequired[list[str]],
+        "audioUrls": NotRequired[list[str]],
+        "startFrame": NotRequired[str],
+        "endFrame": NotRequired[str],
+    },
+)
+
+
+Seedance25WithoutModerationVideoEditInput = TypedDict(
+    "Seedance25WithoutModerationVideoEditInput",
+    {
+        "prompt": str,
+        "aspectRatio": NotRequired[Literal["adaptive"]],
+        "resolution": NotRequired[Literal["480p", "720p", "1080p"]],
+        "generateAudio": NotRequired[bool],
+        "returnLastFrame": NotRequired[bool],
+        "outputFormat": NotRequired[Literal["mp4", "mov"]],
+        "colorDepth": NotRequired[Literal["10bit", "8bit"]],
+        "draft": NotRequired[bool],
+        "videoUrl": str,
+        "imageUrls": NotRequired[list[str]],
+    },
+)
+
+
+Seedance25WithoutModerationVideoExtendInput = TypedDict(
+    "Seedance25WithoutModerationVideoExtendInput",
+    {
+        "prompt": str,
+        "aspectRatio": NotRequired[Literal["adaptive"]],
+        "resolution": NotRequired[Literal["480p", "720p", "1080p"]],
+        "duration": NotRequired[Literal[-1, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]],
+        "generateAudio": NotRequired[bool],
+        "outputFormat": NotRequired[Literal["mp4", "mov"]],
+        "colorDepth": NotRequired[Literal["10bit", "8bit"]],
+        "draft": NotRequired[bool],
+        "videoUrls": list[str],
+    },
+)
+
+
+SeedanceI2vInput = TypedDict(
+    "SeedanceI2vInput",
+    {
+        "prompt": str,
+        "aspectRatio": NotRequired[Literal["16:9", "9:16", "1:1", "4:3", "3:4", "21:9", "adaptive"]],
+        "resolution": NotRequired[Literal["480p", "720p", "1080p"]],
+        "duration": NotRequired[Literal[2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]],
+        "startFrame": str,
+    },
+)
+
+
+Seedream40Input = TypedDict(
+    "Seedream40Input",
+    {
+        "resolution": NotRequired[Literal["1K", "2K", "4K"]],
+        "prompt": str,
+        "aspectRatio": NotRequired[Literal["1:1", "4:3", "3:4", "16:9", "9:16", "3:2", "2:3", "21:9"]],
+        "count": NotRequired[Literal[1, 2, 4, 6, 8, 10]],
+        "imageUrls": NotRequired[list[str]],
+        "negativePrompt": NotRequired[str],
     },
 )
 
@@ -3368,6 +3876,16 @@ Veo31LiteInput = TypedDict(
 )
 
 
+Wan26ImageInput = TypedDict(
+    "Wan26ImageInput",
+    {
+        "prompt": str,
+        "count": NotRequired[Literal[1, 2, 4, 6, 8, 10]],
+        "negativePrompt": NotRequired[str],
+    },
+)
+
+
 Wan27I2vInput = TypedDict(
     "Wan27I2vInput",
     {
@@ -3476,6 +3994,8 @@ TypedModelId = Literal[
     "bytedance-omnihuman-v1.5",
     "bytedance-omnihuman-v2.0",
     "bytedance-video-enhance",
+    "bytedance-video-upscaler",
+    "captionsai-video-captions",
     "claude-fable-5",
     "claude-fable-5-1",
     "claude-haiku-4-5",
@@ -3493,6 +4013,7 @@ TypedModelId = Literal[
     "eleven-dialogue-v4",
     "eleven-dubbing",
     "eleven-multilingual-sts-v2",
+    "eleven-multilingual-v2",
     "eleven-speech-to-text",
     "eleven-sts-v2",
     "eleven-text-to-dialogue",
@@ -3503,6 +4024,7 @@ TypedModelId = Literal[
     "eleven-voice-create",
     "eleven-voice-design-v2",
     "eleven-voice-design-v3",
+    "eleven-voice-remix",
     "elevenlabs-music-v2",
     "elevenlabs-sfx",
     "flux-2-flex",
@@ -3513,6 +4035,8 @@ TypedModelId = Literal[
     "flux-3-max",
     "flux-3-max-keyframes",
     "flux-3-video",
+    "flux-kontext-max",
+    "flux-kontext-pro",
     "flux-video-edit",
     "flux-video-upscale",
     "gemini-2.5-flash",
@@ -3532,6 +4056,7 @@ TypedModelId = Literal[
     "gemini-4-argon",
     "gemini-nano-banana-2.1",
     "gemini-omni-1.1-flash-preview",
+    "gemini-omni-1.2-flash",
     "gemini-omni-flash-preview",
     "gpt-4.1-mini",
     "gpt-4.1-nano",
@@ -3550,10 +4075,13 @@ TypedModelId = Literal[
     "gpt-6-sol",
     "gpt-6.1-sol",
     "gpt-6.1-terra",
+    "gpt-image-1",
     "gpt-image-1.5",
     "gpt-image-2",
     "gpt-image-2.5-flare",
     "gpt-image-2.5-sunburst",
+    "gpt-image-2.6-flare",
+    "gpt-image-2.6-flare-mini",
     "grok-4.7",
     "grok-edit-video",
     "grok-extend-video",
@@ -3564,6 +4092,7 @@ TypedModelId = Literal[
     "grok-imagine-video-1.5",
     "grok-imagine-video-1.5-lite",
     "grok-tts",
+    "hailuo-02",
     "hailuo-2.3",
     "hailuo-2.3-fast",
     "hailuo-2.3-fast-pro",
@@ -3590,17 +4119,24 @@ TypedModelId = Literal[
     "kimi-k3.1-pro-highspeed",
     "kling-3.0-image",
     "kling-avatar",
+    "kling-elements",
     "kling-motion-control",
     "kling-motion-control-v3",
+    "kling-multi-image-v2-1",
     "kling-o1-image",
     "kling-t2a",
+    "kling-v2-1-image",
+    "kling-v2-6",
     "kling-v2a",
     "kling-v3",
     "kling-v3-omni",
     "kling-v3-turbo",
     "kling-v4",
+    "kling-v4-flash",
+    "kling-v4-flash-omni",
     "kling-v4-omni",
     "kling-video-effects",
+    "kling-video-o1",
     "ltx-2.3-a2v",
     "ltx-v2.3-extend",
     "ltx-v2.3-fast",
@@ -3618,6 +4154,7 @@ TypedModelId = Literal[
     "lyria-3-clip",
     "lyria-3-pro",
     "lyria-3.5",
+    "macaron-cookie",
     "minimax-h3",
     "minimax-h3-context-ir",
     "minimax-h3-highspeed",
@@ -3643,6 +4180,7 @@ TypedModelId = Literal[
     "picsart-flow",
     "picsart-flow-video",
     "picsart-flux-2-klein",
+    "picsart-hidream-t2i",
     "picsart-qwen-image-edit",
     "picsart-qwen-makeup",
     "picsart-sana-sprint-v1",
@@ -3654,7 +4192,9 @@ TypedModelId = Literal[
     "pixverse-v6",
     "pixverse-v6-fusion",
     "pixverse-v6-image",
+    "qwen-image-2",
     "qwen-image-2-pro",
+    "qwen-image-3.0",
     "qwen-image-3.0-pro",
     "recraft-creative-upscale",
     "recraft-crisp-upscale",
@@ -3681,13 +4221,17 @@ TypedModelId = Literal[
     "recraftv4_styles_pro_vector",
     "recraftv4_styles_vector",
     "recraftv4_vector",
+    "reve",
     "runway-aleph2",
     "runway-avatar-video",
+    "runway-gen3a-turbo",
+    "runway-gen4-aleph",
     "runway-gen4-ref",
     "runway-gen4.5",
     "sam-3-video",
     "seed-audio-1.0",
     "seed-audio-1.0-multilingual",
+    "seedance-1.5-pro",
     "seedance-2.0",
     "seedance-2.0-fast",
     "seedance-2.0-fast-video-edit",
@@ -3697,9 +4241,17 @@ TypedModelId = Literal[
     "seedance-2.0-mini-video-extend",
     "seedance-2.0-video-edit",
     "seedance-2.0-video-extend",
+    "seedance-2.0-without-moderation",
+    "seedance-2.0-without-moderation-video-edit",
+    "seedance-2.0-without-moderation-video-extend",
     "seedance-2.5",
     "seedance-2.5-video-edit",
     "seedance-2.5-video-extend",
+    "seedance-2.5-without-moderation",
+    "seedance-2.5-without-moderation-video-edit",
+    "seedance-2.5-without-moderation-video-extend",
+    "seedance-i2v",
+    "seedream-4.0",
     "seedream-4.5",
     "seedream-4.7",
     "seedream-5.0-flash",
@@ -3713,6 +4265,7 @@ TypedModelId = Literal[
     "veo-3.1",
     "veo-3.1-fast",
     "veo-3.1-lite",
+    "wan-2.6-image",
     "wan-2.7-i2v",
     "wan-2.7-r2v",
     "wan-2.7-t2v",
@@ -3780,6 +4333,8 @@ ModelInputById = TypedDict(
         "bytedance-omnihuman-v1.5": BytedanceOmnihumanV15Input,
         "bytedance-omnihuman-v2.0": BytedanceOmnihumanV20Input,
         "bytedance-video-enhance": BytedanceVideoEnhanceInput,
+        "bytedance-video-upscaler": BytedanceVideoUpscalerInput,
+        "captionsai-video-captions": CaptionsaiVideoCaptionsInput,
         "claude-fable-5": ClaudeFable5Input,
         "claude-fable-5-1": ClaudeFable51Input,
         "claude-haiku-4-5": ClaudeHaiku45Input,
@@ -3797,6 +4352,7 @@ ModelInputById = TypedDict(
         "eleven-dialogue-v4": ElevenDialogueV4Input,
         "eleven-dubbing": ElevenDubbingInput,
         "eleven-multilingual-sts-v2": ElevenMultilingualStsV2Input,
+        "eleven-multilingual-v2": ElevenMultilingualV2Input,
         "eleven-speech-to-text": ElevenSpeechToTextInput,
         "eleven-sts-v2": ElevenStsV2Input,
         "eleven-text-to-dialogue": ElevenTextToDialogueInput,
@@ -3807,6 +4363,7 @@ ModelInputById = TypedDict(
         "eleven-voice-create": ElevenVoiceCreateInput,
         "eleven-voice-design-v2": ElevenVoiceDesignV2Input,
         "eleven-voice-design-v3": ElevenVoiceDesignV3Input,
+        "eleven-voice-remix": ElevenVoiceRemixInput,
         "elevenlabs-music-v2": ElevenlabsMusicV2Input,
         "elevenlabs-sfx": ElevenlabsSfxInput,
         "flux-2-flex": Flux2FlexInput,
@@ -3817,6 +4374,8 @@ ModelInputById = TypedDict(
         "flux-3-max": Flux3MaxInput,
         "flux-3-max-keyframes": Flux3MaxKeyframesInput,
         "flux-3-video": Flux3VideoInput,
+        "flux-kontext-max": FluxKontextMaxInput,
+        "flux-kontext-pro": FluxKontextProInput,
         "flux-video-edit": FluxVideoEditInput,
         "flux-video-upscale": FluxVideoUpscaleInput,
         "gemini-2.5-flash": Gemini25FlashInput,
@@ -3836,6 +4395,7 @@ ModelInputById = TypedDict(
         "gemini-4-argon": Gemini4ArgonInput,
         "gemini-nano-banana-2.1": GeminiNanoBanana21Input,
         "gemini-omni-1.1-flash-preview": GeminiOmni11FlashPreviewInput,
+        "gemini-omni-1.2-flash": GeminiOmni12FlashInput,
         "gemini-omni-flash-preview": GeminiOmniFlashPreviewInput,
         "gpt-4.1-mini": Gpt41MiniInput,
         "gpt-4.1-nano": Gpt41NanoInput,
@@ -3854,10 +4414,13 @@ ModelInputById = TypedDict(
         "gpt-6-sol": Gpt6SolInput,
         "gpt-6.1-sol": Gpt61SolInput,
         "gpt-6.1-terra": Gpt61TerraInput,
+        "gpt-image-1": GptImage1Input,
         "gpt-image-1.5": GptImage15Input,
         "gpt-image-2": GptImage2Input,
         "gpt-image-2.5-flare": GptImage25FlareInput,
         "gpt-image-2.5-sunburst": GptImage25SunburstInput,
+        "gpt-image-2.6-flare": GptImage26FlareInput,
+        "gpt-image-2.6-flare-mini": GptImage26FlareMiniInput,
         "grok-4.7": Grok47Input,
         "grok-edit-video": GrokEditVideoInput,
         "grok-extend-video": GrokExtendVideoInput,
@@ -3868,6 +4431,7 @@ ModelInputById = TypedDict(
         "grok-imagine-video-1.5": GrokImagineVideo15Input,
         "grok-imagine-video-1.5-lite": GrokImagineVideo15LiteInput,
         "grok-tts": GrokTtsInput,
+        "hailuo-02": Hailuo02Input,
         "hailuo-2.3": Hailuo23Input,
         "hailuo-2.3-fast": Hailuo23FastInput,
         "hailuo-2.3-fast-pro": Hailuo23FastProInput,
@@ -3894,17 +4458,24 @@ ModelInputById = TypedDict(
         "kimi-k3.1-pro-highspeed": KimiK31ProHighspeedInput,
         "kling-3.0-image": Kling30ImageInput,
         "kling-avatar": KlingAvatarInput,
+        "kling-elements": KlingElementsInput,
         "kling-motion-control": KlingMotionControlInput,
         "kling-motion-control-v3": KlingMotionControlV3Input,
+        "kling-multi-image-v2-1": KlingMultiImageV21Input,
         "kling-o1-image": KlingO1ImageInput,
         "kling-t2a": KlingT2aInput,
+        "kling-v2-1-image": KlingV21ImageInput,
+        "kling-v2-6": KlingV26Input,
         "kling-v2a": KlingV2aInput,
         "kling-v3": KlingV3Input,
         "kling-v3-omni": KlingV3OmniInput,
         "kling-v3-turbo": KlingV3TurboInput,
         "kling-v4": KlingV4Input,
+        "kling-v4-flash": KlingV4FlashInput,
+        "kling-v4-flash-omni": KlingV4FlashOmniInput,
         "kling-v4-omni": KlingV4OmniInput,
         "kling-video-effects": KlingVideoEffectsInput,
+        "kling-video-o1": KlingVideoO1Input,
         "ltx-2.3-a2v": Ltx23A2vInput,
         "ltx-v2.3-extend": LtxV23ExtendInput,
         "ltx-v2.3-fast": LtxV23FastInput,
@@ -3922,6 +4493,7 @@ ModelInputById = TypedDict(
         "lyria-3-clip": Lyria3ClipInput,
         "lyria-3-pro": Lyria3ProInput,
         "lyria-3.5": Lyria35Input,
+        "macaron-cookie": MacaronCookieInput,
         "minimax-h3": MinimaxH3Input,
         "minimax-h3-context-ir": MinimaxH3ContextIrInput,
         "minimax-h3-highspeed": MinimaxH3HighspeedInput,
@@ -3947,6 +4519,7 @@ ModelInputById = TypedDict(
         "picsart-flow": PicsartFlowInput,
         "picsart-flow-video": PicsartFlowVideoInput,
         "picsart-flux-2-klein": PicsartFlux2KleinInput,
+        "picsart-hidream-t2i": PicsartHidreamT2iInput,
         "picsart-qwen-image-edit": PicsartQwenImageEditInput,
         "picsart-qwen-makeup": PicsartQwenMakeupInput,
         "picsart-sana-sprint-v1": PicsartSanaSprintV1Input,
@@ -3958,7 +4531,9 @@ ModelInputById = TypedDict(
         "pixverse-v6": PixverseV6Input,
         "pixverse-v6-fusion": PixverseV6FusionInput,
         "pixverse-v6-image": PixverseV6ImageInput,
+        "qwen-image-2": QwenImage2Input,
         "qwen-image-2-pro": QwenImage2ProInput,
+        "qwen-image-3.0": QwenImage30Input,
         "qwen-image-3.0-pro": QwenImage30ProInput,
         "recraft-creative-upscale": RecraftCreativeUpscaleInput,
         "recraft-crisp-upscale": RecraftCrispUpscaleInput,
@@ -3985,13 +4560,17 @@ ModelInputById = TypedDict(
         "recraftv4_styles_pro_vector": Recraftv4StylesProVectorInput,
         "recraftv4_styles_vector": Recraftv4StylesVectorInput,
         "recraftv4_vector": Recraftv4VectorInput,
+        "reve": ReveInput,
         "runway-aleph2": RunwayAleph2Input,
         "runway-avatar-video": RunwayAvatarVideoInput,
+        "runway-gen3a-turbo": RunwayGen3aTurboInput,
+        "runway-gen4-aleph": RunwayGen4AlephInput,
         "runway-gen4-ref": RunwayGen4RefInput,
         "runway-gen4.5": RunwayGen45Input,
         "sam-3-video": Sam3VideoInput,
         "seed-audio-1.0": SeedAudio10Input,
         "seed-audio-1.0-multilingual": SeedAudio10MultilingualInput,
+        "seedance-1.5-pro": Seedance15ProInput,
         "seedance-2.0": Seedance20Input,
         "seedance-2.0-fast": Seedance20FastInput,
         "seedance-2.0-fast-video-edit": Seedance20FastVideoEditInput,
@@ -4001,9 +4580,17 @@ ModelInputById = TypedDict(
         "seedance-2.0-mini-video-extend": Seedance20MiniVideoExtendInput,
         "seedance-2.0-video-edit": Seedance20VideoEditInput,
         "seedance-2.0-video-extend": Seedance20VideoExtendInput,
+        "seedance-2.0-without-moderation": Seedance20WithoutModerationInput,
+        "seedance-2.0-without-moderation-video-edit": Seedance20WithoutModerationVideoEditInput,
+        "seedance-2.0-without-moderation-video-extend": Seedance20WithoutModerationVideoExtendInput,
         "seedance-2.5": Seedance25Input,
         "seedance-2.5-video-edit": Seedance25VideoEditInput,
         "seedance-2.5-video-extend": Seedance25VideoExtendInput,
+        "seedance-2.5-without-moderation": Seedance25WithoutModerationInput,
+        "seedance-2.5-without-moderation-video-edit": Seedance25WithoutModerationVideoEditInput,
+        "seedance-2.5-without-moderation-video-extend": Seedance25WithoutModerationVideoExtendInput,
+        "seedance-i2v": SeedanceI2vInput,
+        "seedream-4.0": Seedream40Input,
         "seedream-4.5": Seedream45Input,
         "seedream-4.7": Seedream47Input,
         "seedream-5.0-flash": Seedream50FlashInput,
@@ -4017,6 +4604,7 @@ ModelInputById = TypedDict(
         "veo-3.1": Veo31Input,
         "veo-3.1-fast": Veo31FastInput,
         "veo-3.1-lite": Veo31LiteInput,
+        "wan-2.6-image": Wan26ImageInput,
         "wan-2.7-i2v": Wan27I2vInput,
         "wan-2.7-r2v": Wan27R2vInput,
         "wan-2.7-t2v": Wan27T2vInput,

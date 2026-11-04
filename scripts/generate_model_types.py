@@ -31,7 +31,11 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "src" / "picsart_ai_sdk" / "model_types.py"
 DEFAULT_API_URL = "https://api.picsart.com"
-CATALOG_PATH = "/gw-v2/v1/models-catalog?include=schema"
+# Every model, as the TS @picsart/model-types covers: the API's default is only the public
+# production / general-availability set, so preview and deprecated models are asked for explicitly.
+CATALOG_PATH = (
+    "/gw-v2/v1/models-catalog?include=schema&release=production,general-availability,preview&includeDeprecated=true"
+)
 
 
 class SchemaError(Exception):

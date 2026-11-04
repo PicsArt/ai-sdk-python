@@ -3,6 +3,7 @@
 import importlib.util
 import json
 import sys
+import urllib.parse
 from pathlib import Path
 from types import ModuleType
 from typing import Any
@@ -191,3 +192,32 @@ def test_the_committed_module_is_importable_from_the_package() -> None:
     assert "prompt" in Flux2ProInput.__required_keys__
     assert ModelInputById.__annotations__ and TextModelInputById.__annotations__
     assert TypedModelId and TextModelId and JsonModelId
+
+
+def test_fetch_asks_for_every_model_the_ts_types_cover(monkeypatch: pytest.MonkeyPatch) -> None:
+    # The TS @picsart/model-types covers the whole catalog; the API's default is only the public
+    # production / general-availability set, which would leave out preview and deprecated models.
+    seen: list[str] = []
+
+    class Response:
+        def __enter__(self) -> "Response":
+            return self
+
+        def __exit__(self, *exc: object) -> None:
+            return None
+
+        def read(self) -> bytes:
+            return b'{"status": "success", "response": {"models": []}}'
+
+    def urlopen(request: Any, timeout: float) -> Response:
+        seen.append(request.full_url)
+        return Response()
+
+    monkeypatch.setenv("PICSART_TOKEN", "t")
+    monkeypatch.setattr(gen.urllib.request, "urlopen", urlopen)
+    gen.fetch_catalog("https://api.test")
+
+    query = urllib.parse.parse_qs(urllib.parse.urlsplit(seen[0]).query)
+    assert query["include"] == ["schema"]
+    assert sorted(query["release"][0].split(",")) == ["general-availability", "preview", "production"]
+    assert query["includeDeprecated"] == ["true"]
