@@ -105,7 +105,7 @@ __all__ = [
     "GptImage25FlareInput",
     "GptImage25SunburstInput",
     "GptImage26FlareInput",
-    "GptImage26FlareMiniInput",
+    "GptImage26SunburstInput",
     "GptImage2Input",
     "Grok47Input",
     "GrokEditVideoInput",
@@ -1438,8 +1438,8 @@ GptImage26FlareInput = TypedDict(
 )
 
 
-GptImage26FlareMiniInput = TypedDict(
-    "GptImage26FlareMiniInput",
+GptImage26SunburstInput = TypedDict(
+    "GptImage26SunburstInput",
     {
         "prompt": str,
         "aspectRatio": NotRequired[Literal["1:1", "3:2", "2:3", "16:9", "9:16", "4:3", "3:4", "auto"]],
@@ -4081,7 +4081,7 @@ TypedModelId = Literal[
     "gpt-image-2.5-flare",
     "gpt-image-2.5-sunburst",
     "gpt-image-2.6-flare",
-    "gpt-image-2.6-flare-mini",
+    "gpt-image-2.6-sunburst",
     "grok-4.7",
     "grok-edit-video",
     "grok-extend-video",
@@ -4420,7 +4420,7 @@ ModelInputById = TypedDict(
         "gpt-image-2.5-flare": GptImage25FlareInput,
         "gpt-image-2.5-sunburst": GptImage25SunburstInput,
         "gpt-image-2.6-flare": GptImage26FlareInput,
-        "gpt-image-2.6-flare-mini": GptImage26FlareMiniInput,
+        "gpt-image-2.6-sunburst": GptImage26SunburstInput,
         "grok-4.7": Grok47Input,
         "grok-edit-video": GrokEditVideoInput,
         "grok-extend-video": GrokExtendVideoInput,
