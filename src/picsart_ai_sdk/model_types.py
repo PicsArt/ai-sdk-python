@@ -1442,6 +1442,7 @@ GptImage26FlareInput = TypedDict(
         "count": NotRequired[Literal[1, 2, 4, 6, 8, 10]],
         "imageUrls": NotRequired[list[str]],
         "markupUrl": NotRequired[str],
+        "maskUrl": NotRequired[str],
     },
 )
 
@@ -1465,6 +1466,7 @@ GptImage26SunburstInput = TypedDict(
         "count": NotRequired[Literal[1, 2, 4, 6, 8, 10]],
         "imageUrls": NotRequired[list[str]],
         "markupUrl": NotRequired[str],
+        "maskUrl": NotRequired[str],
     },
 )
 
