@@ -2193,6 +2193,7 @@ KlingV4OmniInput = TypedDict(
         "startFrame": NotRequired[str],
         "endFrame": NotRequired[str],
         "imageUrls": NotRequired[list[str]],
+        "middleFrames": NotRequired[list[str]],
         "videoUrl": NotRequired[str],
         "referType": NotRequired[Literal["feature", "base"]],
         "elementList": NotRequired[list[KlingV4OmniElementList]],
