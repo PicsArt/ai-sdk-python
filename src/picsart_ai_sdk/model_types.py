@@ -22,6 +22,7 @@ __all__ = [
     "BytedanceVideoUpscalerInput",
     "CaptionsaiVideoCaptionsInput",
     "ClaudeFable51Input",
+    "ClaudeFable52Input",
     "ClaudeFable5Input",
     "ClaudeHaiku45Input",
     "ClaudeHaiku55Input",
@@ -180,7 +181,6 @@ __all__ = [
     "Lyria35Input",
     "Lyria3ClipInput",
     "Lyria3ProInput",
-    "MacaronCookieInput",
     "MinimaxH3ContextIrInput",
     "MinimaxH3HighspeedInput",
     "MinimaxH3Input",
@@ -284,6 +284,7 @@ __all__ = [
     "Seedream50FlashInput",
     "Seedream50LiteInput",
     "Seedream50ProInput",
+    "Seedream55Input",
     "TextModelId",
     "TextModelInputById",
     "TopazUpscaleImageInput",
@@ -383,6 +384,15 @@ ClaudeFable5Input = TypedDict(
 
 ClaudeFable51Input = TypedDict(
     "ClaudeFable51Input",
+    {
+        "prompt": str,
+        "imageUrls": NotRequired[list[str]],
+    },
+)
+
+
+ClaudeFable52Input = TypedDict(
+    "ClaudeFable52Input",
     {
         "prompt": str,
         "imageUrls": NotRequired[list[str]],
@@ -2441,23 +2451,6 @@ Lyria35Input = TypedDict(
 )
 
 
-MacaronCookieInput = TypedDict(
-    "MacaronCookieInput",
-    {
-        "prompt": str,
-        "aspectRatio": NotRequired[Literal["16:9", "9:16"]],
-        "resolution": NotRequired[Literal["360p", "720p", "1080p", "4k"]],
-        "duration": NotRequired[Literal[3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]],
-        "startFrame": NotRequired[str],
-        "endFrame": NotRequired[str],
-        "imageUrls": NotRequired[list[str]],
-        "videoUrl": NotRequired[str],
-        "videoUrls": NotRequired[list[str]],
-        "task": NotRequired[Literal["edit", "extend"]],
-    },
-)
-
-
 MinimaxH3Input = TypedDict(
     "MinimaxH3Input",
     {
@@ -3798,6 +3791,19 @@ Seedream50ProInput = TypedDict(
 )
 
 
+Seedream55Input = TypedDict(
+    "Seedream55Input",
+    {
+        "resolution": NotRequired[Literal["1K", "1.5K", "2K"]],
+        "prompt": str,
+        "aspectRatio": NotRequired[Literal["1:1", "4:3", "3:4", "16:9", "9:16", "3:2", "2:3", "21:9"]],
+        "imageUrls": NotRequired[list[str]],
+        "negativePrompt": NotRequired[str],
+        "background": NotRequired[Literal["auto", "transparent", "opaque"]],
+    },
+)
+
+
 TopazUpscaleImageInput = TypedDict(
     "TopazUpscaleImageInput",
     {
@@ -4013,6 +4019,7 @@ TypedModelId = Literal[
     "captionsai-video-captions",
     "claude-fable-5",
     "claude-fable-5-1",
+    "claude-fable-5-2",
     "claude-haiku-4-5",
     "claude-haiku-5-5",
     "claude-opus-4-8",
@@ -4169,7 +4176,6 @@ TypedModelId = Literal[
     "lyria-3-clip",
     "lyria-3-pro",
     "lyria-3.5",
-    "macaron-cookie",
     "minimax-h3",
     "minimax-h3-context-ir",
     "minimax-h3-highspeed",
@@ -4272,6 +4278,7 @@ TypedModelId = Literal[
     "seedream-5.0-flash",
     "seedream-5.0-lite",
     "seedream-5.0-pro",
+    "seedream-5.5",
     "topaz-upscale-image",
     "topaz-upscale-video",
     "typesafe-evaluate",
@@ -4293,6 +4300,7 @@ TypedModelId = Literal[
 TextModelId = Literal[
     "claude-fable-5",
     "claude-fable-5-1",
+    "claude-fable-5-2",
     "claude-haiku-4-5",
     "claude-haiku-5-5",
     "claude-opus-4-8",
@@ -4352,6 +4360,7 @@ ModelInputById = TypedDict(
         "captionsai-video-captions": CaptionsaiVideoCaptionsInput,
         "claude-fable-5": ClaudeFable5Input,
         "claude-fable-5-1": ClaudeFable51Input,
+        "claude-fable-5-2": ClaudeFable52Input,
         "claude-haiku-4-5": ClaudeHaiku45Input,
         "claude-haiku-5-5": ClaudeHaiku55Input,
         "claude-opus-4-8": ClaudeOpus48Input,
@@ -4508,7 +4517,6 @@ ModelInputById = TypedDict(
         "lyria-3-clip": Lyria3ClipInput,
         "lyria-3-pro": Lyria3ProInput,
         "lyria-3.5": Lyria35Input,
-        "macaron-cookie": MacaronCookieInput,
         "minimax-h3": MinimaxH3Input,
         "minimax-h3-context-ir": MinimaxH3ContextIrInput,
         "minimax-h3-highspeed": MinimaxH3HighspeedInput,
@@ -4611,6 +4619,7 @@ ModelInputById = TypedDict(
         "seedream-5.0-flash": Seedream50FlashInput,
         "seedream-5.0-lite": Seedream50LiteInput,
         "seedream-5.0-pro": Seedream50ProInput,
+        "seedream-5.5": Seedream55Input,
         "topaz-upscale-image": TopazUpscaleImageInput,
         "topaz-upscale-video": TopazUpscaleVideoInput,
         "typesafe-evaluate": TypesafeEvaluateInput,
@@ -4635,6 +4644,7 @@ TextModelInputById = TypedDict(
     {
         "claude-fable-5": ClaudeFable5Input,
         "claude-fable-5-1": ClaudeFable51Input,
+        "claude-fable-5-2": ClaudeFable52Input,
         "claude-haiku-4-5": ClaudeHaiku45Input,
         "claude-haiku-5-5": ClaudeHaiku55Input,
         "claude-opus-4-8": ClaudeOpus48Input,
