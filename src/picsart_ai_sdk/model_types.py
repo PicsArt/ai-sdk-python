@@ -183,6 +183,8 @@ __all__ = [
     "Lyria3ProInput",
     "MinimaxH3ContextIrInput",
     "MinimaxH3HighspeedInput",
+    "MinimaxH3ImageHighspeedInput",
+    "MinimaxH3ImageInput",
     "MinimaxH3Input",
     "MinimaxH3LiteInput",
     "MinimaxH3MaxCameraControlsInput",
@@ -2498,6 +2500,34 @@ MinimaxH3HighspeedInput = TypedDict(
 )
 
 
+MinimaxH3ImageInput = TypedDict(
+    "MinimaxH3ImageInput",
+    {
+        "prompt": str,
+        "resolution": NotRequired[Literal["1K", "2K", "4K"]],
+        "aspectRatio": NotRequired[Literal["auto", "1:1", "4:3", "3:4", "3:2", "2:3", "16:9", "9:16", "21:9", "3:1", "1:3"]],
+        "count": NotRequired[Literal[1, 2, 4, 6, 8, 10]],
+        "enhancePrompt": NotRequired[bool],
+        "outputFormat": NotRequired[Literal["jpeg", "png", "webp"]],
+        "imageUrls": NotRequired[list[str]],
+    },
+)
+
+
+MinimaxH3ImageHighspeedInput = TypedDict(
+    "MinimaxH3ImageHighspeedInput",
+    {
+        "prompt": str,
+        "resolution": NotRequired[Literal["1K", "2K", "4K"]],
+        "aspectRatio": NotRequired[Literal["auto", "1:1", "4:3", "3:4", "3:2", "2:3", "16:9", "9:16", "21:9", "3:1", "1:3"]],
+        "count": NotRequired[Literal[1, 2, 4, 6, 8, 10]],
+        "enhancePrompt": NotRequired[bool],
+        "outputFormat": NotRequired[Literal["jpeg", "png", "webp"]],
+        "imageUrls": NotRequired[list[str]],
+    },
+)
+
+
 MinimaxH3LiteInput = TypedDict(
     "MinimaxH3LiteInput",
     {
@@ -4179,6 +4209,8 @@ TypedModelId = Literal[
     "minimax-h3",
     "minimax-h3-context-ir",
     "minimax-h3-highspeed",
+    "minimax-h3-image",
+    "minimax-h3-image-highspeed",
     "minimax-h3-lite",
     "minimax-h3-max",
     "minimax-h3-max-camera-controls",
@@ -4520,6 +4552,8 @@ ModelInputById = TypedDict(
         "minimax-h3": MinimaxH3Input,
         "minimax-h3-context-ir": MinimaxH3ContextIrInput,
         "minimax-h3-highspeed": MinimaxH3HighspeedInput,
+        "minimax-h3-image": MinimaxH3ImageInput,
+        "minimax-h3-image-highspeed": MinimaxH3ImageHighspeedInput,
         "minimax-h3-lite": MinimaxH3LiteInput,
         "minimax-h3-max": MinimaxH3MaxInput,
         "minimax-h3-max-camera-controls": MinimaxH3MaxCameraControlsInput,
