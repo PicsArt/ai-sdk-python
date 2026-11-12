@@ -64,6 +64,7 @@ __all__ = [
     "FluxKontextMaxInput",
     "FluxKontextProInput",
     "FluxVideoEditInput",
+    "FluxVideoOutpaintInput",
     "FluxVideoUpscaleInput",
     "Gemini25FlashImageInput",
     "Gemini25FlashInput",
@@ -80,6 +81,7 @@ __all__ = [
     "Gemini3ProImageInput",
     "Gemini3ProInput",
     "Gemini4ArgonInput",
+    "Gemini4CarbonInput",
     "GeminiNanoBanana21Input",
     "GeminiOmni11FlashPreviewInput",
     "GeminiOmni12FlashInput",
@@ -147,6 +149,7 @@ __all__ = [
     "Kling30ImageInput",
     "KlingAvatarInput",
     "KlingElementsInput",
+    "KlingImage40Input",
     "KlingMotionControlInput",
     "KlingMotionControlV3Input",
     "KlingMultiImageV21Input",
@@ -871,6 +874,23 @@ FluxVideoEditInput = TypedDict(
 )
 
 
+FluxVideoOutpaintInput = TypedDict(
+    "FluxVideoOutpaintInput",
+    {
+        "videoUrl": str,
+        "prompt": NotRequired[str],
+        "width": int,
+        "height": int,
+        "referenceOffsetX": NotRequired[int],
+        "referenceOffsetY": NotRequired[int],
+        "autoCrop": NotRequired[bool],
+        "duration": NotRequired[Literal["auto", "5", "10", "15", "20"]],
+        "seed": NotRequired[int],
+        "safetyTolerance": NotRequired[float],
+    },
+)
+
+
 FluxVideoUpscaleInput = TypedDict(
     "FluxVideoUpscaleInput",
     {
@@ -1131,6 +1151,17 @@ Gemini4ArgonInput = TypedDict(
         "imageUrls": NotRequired[list[str]],
         "videoUrl": NotRequired[str],
         "thinking": NotRequired[Literal["off", "low", "high"]],
+    },
+)
+
+
+Gemini4CarbonInput = TypedDict(
+    "Gemini4CarbonInput",
+    {
+        "prompt": str,
+        "imageUrls": NotRequired[list[str]],
+        "videoUrl": NotRequired[str],
+        "thinking": NotRequired[Literal["off", "low", "medium", "high"]],
     },
 )
 
@@ -1940,6 +1971,30 @@ KlingElementsInput = TypedDict(
         "imageUrls": NotRequired[list[str]],
         "videoUrl": NotRequired[str],
         "elementVoiceId": NotRequired[str],
+    },
+)
+
+
+KlingImage40ElementList = TypedDict(
+    "KlingImage40ElementList",
+    {
+        "element_id": str,
+    },
+)
+
+
+KlingImage40Input = TypedDict(
+    "KlingImage40Input",
+    {
+        "prompt": str,
+        "resultType": NotRequired[Literal["single", "series", "long_image"]],
+        "aspectRatio": NotRequired[Literal["auto", "16:9", "9:16", "1:1", "21:9", "4:3", "3:2", "2:3", "3:4"]],
+        "resolution": NotRequired[Literal["1k", "2k", "4k", "8k"]],
+        "count": NotRequired[Literal[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]],
+        "skill": NotRequired[Literal["ecommerce", "webpage"]],
+        "length": NotRequired[Literal["short", "medium", "long"]],
+        "imageUrls": NotRequired[list[str]],
+        "elementList": NotRequired[list[KlingImage40ElementList]],
     },
 )
 
@@ -3618,7 +3673,7 @@ Seedance25Input = TypedDict(
     {
         "prompt": NotRequired[str],
         "aspectRatio": NotRequired[Literal["16:9", "9:16", "1:1", "4:3", "3:4", "21:9", "adaptive"]],
-        "resolution": NotRequired[Literal["480p", "720p", "1080p"]],
+        "resolution": NotRequired[Literal["480p", "720p", "1080p", "4k"]],
         "duration": NotRequired[Literal[-1, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]],
         "generateAudio": NotRequired[bool],
         "returnLastFrame": NotRequired[bool],
@@ -3641,7 +3696,7 @@ Seedance25VideoEditInput = TypedDict(
     {
         "prompt": str,
         "aspectRatio": NotRequired[Literal["adaptive"]],
-        "resolution": NotRequired[Literal["480p", "720p", "1080p"]],
+        "resolution": NotRequired[Literal["480p", "720p", "1080p", "4k"]],
         "generateAudio": NotRequired[bool],
         "returnLastFrame": NotRequired[bool],
         "outputFormat": NotRequired[Literal["mp4", "mov"]],
@@ -3658,7 +3713,7 @@ Seedance25VideoExtendInput = TypedDict(
     {
         "prompt": str,
         "aspectRatio": NotRequired[Literal["adaptive"]],
-        "resolution": NotRequired[Literal["480p", "720p", "1080p"]],
+        "resolution": NotRequired[Literal["480p", "720p", "1080p", "4k"]],
         "duration": NotRequired[Literal[-1, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]],
         "generateAudio": NotRequired[bool],
         "outputFormat": NotRequired[Literal["mp4", "mov"]],
@@ -3682,7 +3737,7 @@ Seedance25WithoutModerationInput = TypedDict(
     {
         "prompt": NotRequired[str],
         "aspectRatio": NotRequired[Literal["16:9", "9:16", "1:1", "4:3", "3:4", "21:9", "adaptive"]],
-        "resolution": NotRequired[Literal["480p", "720p", "1080p"]],
+        "resolution": NotRequired[Literal["480p", "720p", "1080p", "4k"]],
         "duration": NotRequired[Literal[-1, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]],
         "generateAudio": NotRequired[bool],
         "returnLastFrame": NotRequired[bool],
@@ -3705,7 +3760,7 @@ Seedance25WithoutModerationVideoEditInput = TypedDict(
     {
         "prompt": str,
         "aspectRatio": NotRequired[Literal["adaptive"]],
-        "resolution": NotRequired[Literal["480p", "720p", "1080p"]],
+        "resolution": NotRequired[Literal["480p", "720p", "1080p", "4k"]],
         "generateAudio": NotRequired[bool],
         "returnLastFrame": NotRequired[bool],
         "outputFormat": NotRequired[Literal["mp4", "mov"]],
@@ -3722,7 +3777,7 @@ Seedance25WithoutModerationVideoExtendInput = TypedDict(
     {
         "prompt": str,
         "aspectRatio": NotRequired[Literal["adaptive"]],
-        "resolution": NotRequired[Literal["480p", "720p", "1080p"]],
+        "resolution": NotRequired[Literal["480p", "720p", "1080p", "4k"]],
         "duration": NotRequired[Literal[-1, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]],
         "generateAudio": NotRequired[bool],
         "outputFormat": NotRequired[Literal["mp4", "mov"]],
@@ -4090,6 +4145,7 @@ TypedModelId = Literal[
     "flux-kontext-max",
     "flux-kontext-pro",
     "flux-video-edit",
+    "flux-video-outpaint",
     "flux-video-upscale",
     "gemini-2.5-flash",
     "gemini-2.5-flash-image",
@@ -4106,6 +4162,7 @@ TypedModelId = Literal[
     "gemini-3.8-flash-lite-tts",
     "gemini-3.8-flash-tts",
     "gemini-4-argon",
+    "gemini-4-carbon",
     "gemini-nano-banana-2.1",
     "gemini-omni-1.1-flash-preview",
     "gemini-omni-1.2-flash",
@@ -4172,6 +4229,7 @@ TypedModelId = Literal[
     "kling-3.0-image",
     "kling-avatar",
     "kling-elements",
+    "kling-image-4.0",
     "kling-motion-control",
     "kling-motion-control-v3",
     "kling-multi-image-v2-1",
@@ -4349,6 +4407,7 @@ TextModelId = Literal[
     "gemini-3.7-flash",
     "gemini-3.8-flash",
     "gemini-4-argon",
+    "gemini-4-carbon",
     "gpt-4.1-mini",
     "gpt-4.1-nano",
     "gpt-4o",
@@ -4433,6 +4492,7 @@ ModelInputById = TypedDict(
         "flux-kontext-max": FluxKontextMaxInput,
         "flux-kontext-pro": FluxKontextProInput,
         "flux-video-edit": FluxVideoEditInput,
+        "flux-video-outpaint": FluxVideoOutpaintInput,
         "flux-video-upscale": FluxVideoUpscaleInput,
         "gemini-2.5-flash": Gemini25FlashInput,
         "gemini-2.5-flash-image": Gemini25FlashImageInput,
@@ -4449,6 +4509,7 @@ ModelInputById = TypedDict(
         "gemini-3.8-flash-lite-tts": Gemini38FlashLiteTtsInput,
         "gemini-3.8-flash-tts": Gemini38FlashTtsInput,
         "gemini-4-argon": Gemini4ArgonInput,
+        "gemini-4-carbon": Gemini4CarbonInput,
         "gemini-nano-banana-2.1": GeminiNanoBanana21Input,
         "gemini-omni-1.1-flash-preview": GeminiOmni11FlashPreviewInput,
         "gemini-omni-1.2-flash": GeminiOmni12FlashInput,
@@ -4515,6 +4576,7 @@ ModelInputById = TypedDict(
         "kling-3.0-image": Kling30ImageInput,
         "kling-avatar": KlingAvatarInput,
         "kling-elements": KlingElementsInput,
+        "kling-image-4.0": KlingImage40Input,
         "kling-motion-control": KlingMotionControlInput,
         "kling-motion-control-v3": KlingMotionControlV3Input,
         "kling-multi-image-v2-1": KlingMultiImageV21Input,
@@ -4695,6 +4757,7 @@ TextModelInputById = TypedDict(
         "gemini-3.7-flash": Gemini37FlashInput,
         "gemini-3.8-flash": Gemini38FlashInput,
         "gemini-4-argon": Gemini4ArgonInput,
+        "gemini-4-carbon": Gemini4CarbonInput,
         "gpt-4.1-mini": Gpt41MiniInput,
         "gpt-4.1-nano": Gpt41NanoInput,
         "gpt-4o": Gpt4oInput,
