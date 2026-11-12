@@ -65,7 +65,9 @@ from .types import (
     GenerationOptions,
     GenerationProgressEvent,
     InputsTransformation,
+    PriceOptions,
     RunResponse,
+    ServiceTier,
 )
 from .workflows import WorkflowsClient
 
@@ -109,6 +111,9 @@ class GenerateOptions:
     drive: PayloadDriveOptions | None = None
     inputs_transformation: InputsTransformation | None = None
     app: AppIdentity | None = None
+    service_tier: ServiceTier | None = None
+    """Service tier of this call — overrides the client's. ``"priority"`` pays the regular price to skip the
+    limits of the user's discount. Applies to ``run``, ``generate``, ``generate_text`` and ``submit``."""
 
 
 @dataclass(frozen=True)
@@ -172,7 +177,9 @@ class AiClient:
         api_url: str | None = None,
         authed_fetch: AuthenticatedFetch | None = None,
         catalogs: CatalogsConfig | None = None,
+        service_tier: ServiceTier | None = None,
     ) -> None:
+        self._service_tier = service_tier
         self._api_url = api_url
         self._authed_fetch = authed_fetch
         self._transport = transport
@@ -322,6 +329,12 @@ class AiClient:
             )
         )
 
+    def _tier(self, options: GenerateOptions | PriceOptions | None) -> ServiceTier | None:
+        """Per-call wins, then the client's, then unset (nothing is sent; the platform applies ``auto``)."""
+        if options is not None and options.service_tier is not None:
+            return options.service_tier
+        return self._service_tier
+
     def _media_command(self, model: str, params: dict[str, Any], options: GenerateOptions | None) -> dict[str, Any]:
         return build_models_command(
             model,
@@ -329,12 +342,21 @@ class AiClient:
             with_options=True,
             drive=self._dynamic_drive_options(model, params, options),
             downscale_oversized_images=self._downscale(options),
+            service_tier=self._tier(options),
         )
 
-    async def _fetch_options(self, model: str, params: dict[str, Any]) -> OptionsResult | None:
+    def _plain_command(
+        self, model: str, params: dict[str, Any], options: GenerateOptions | PriceOptions | None
+    ) -> dict[str, Any]:
+        """Text, run and price commands: no media options, only the service tier when one is set."""
+        return build_models_command(model, params, service_tier=self._tier(options))
+
+    async def _fetch_options(
+        self, model: str, params: dict[str, Any], options: PriceOptions | None = None
+    ) -> OptionsResult | None:
         if not has_method(self._transport, "options"):
             return None
-        res = await self._transport.options(MODELS_WORKFLOW, build_models_command(model, params))  # type: ignore[attr-defined]
+        res = await self._transport.options(MODELS_WORKFLOW, self._plain_command(model, params, options))  # type: ignore[attr-defined]
         if is_number(res):
             return {"credits": res}
         if isinstance(res, dict) and is_number(res.get("credits")):
@@ -373,7 +395,7 @@ class AiClient:
     async def run(
         self, model: str, params: Mapping[str, Any], options: GenerateOptions | None = None
     ) -> RunResponse[Any]:
-        completed = await self._execute_dynamic(build_models_command(model, _as_params(params)), options)
+        completed = await self._execute_dynamic(self._plain_command(model, _as_params(params), options), options)
         return parse_dynamic_run_result(completed, model)
 
     async def generate(
@@ -385,15 +407,19 @@ class AiClient:
     async def generate_text(
         self, model: str, params: Mapping[str, Any], options: GenerateOptions | None = None
     ) -> GenerateTextResult:
-        completed = await self._execute_dynamic(build_models_command(model, _as_params(params)), options)
+        completed = await self._execute_dynamic(self._plain_command(model, _as_params(params), options), options)
         return parse_dynamic_text_result(completed, model)
 
-    async def get_credits(self, model: str, params: Mapping[str, Any]) -> float | None:
-        res = await self._fetch_options(model, _as_params(params))
+    async def get_credits(
+        self, model: str, params: Mapping[str, Any], options: PriceOptions | None = None
+    ) -> float | None:
+        res = await self._fetch_options(model, _as_params(params), options)
         return res["credits"] if res is not None else None
 
-    async def options(self, model: str, params: Mapping[str, Any]) -> OptionsResult | None:
-        return await self._fetch_options(model, _as_params(params))
+    async def options(
+        self, model: str, params: Mapping[str, Any], options: PriceOptions | None = None
+    ) -> OptionsResult | None:
+        return await self._fetch_options(model, _as_params(params), options)
 
     async def submit(self, model: str, params: Mapping[str, Any], options: GenerateOptions | None = None) -> str:
         self._assert_async_lifecycle()
@@ -531,6 +557,7 @@ def create_client(
     drive: DriveConfig | None = None,
     inputs_transformation: InputsTransformation | None = None,
     catalogs: CatalogsConfig | None = None,
+    service_tier: ServiceTier | None = None,
 ) -> AiClient:
     """Create a client. Pass ``api_url`` with ``api_key`` (or your own authenticated ``fetch``),
     or a custom ``transport``."""
@@ -563,6 +590,7 @@ def create_client(
         api_url=api_url,
         authed_fetch=authed,
         catalogs=catalogs,
+        service_tier=service_tier,
     )
 
 

@@ -34,6 +34,20 @@ def test_command_shapes() -> None:
     ] == {"inputs_transformation": {"downscale_oversized_images": True}, "drive": {"name": "x"}}
 
 
+def test_command_service_tier() -> None:
+    # The only option of a text / run / price command …
+    assert build_models_command("m", {}, service_tier="priority") == {
+        "model": "m",
+        "params": {},
+        "options": {"service_tier": "priority"},
+    }
+    # … and beside the media options of a generation.
+    assert build_models_command("m", {}, with_options=True, service_tier="auto")["options"] == {
+        "inputs_transformation": {"downscale_oversized_images": False},
+        "service_tier": "auto",
+    }
+
+
 def test_items_with_metadata_and_usage() -> None:
     res = parse_dynamic_result(
         done({"items": [{"url": "a", "metadata": {"exploreImageId": "e"}}, {"url": "b"}]}, usage={"credits": 4}), "m"

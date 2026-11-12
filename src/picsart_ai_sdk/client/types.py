@@ -80,6 +80,27 @@ class InputsTransformation:
     downscale_oversized_images: bool | None = None
 
 
+ServiceTier = Literal["auto", "priority"]
+"""How a generation is served, sent as ``options.service_tier``.
+
+- ``"auto"`` — the platform default. The user's discount is used when one applies, along with the limits it
+  carries: a number of generations at a time (a 429 when they are all in use) and a wait before a generation
+  starts after heavy use.
+- ``"priority"`` — the regular price, with no concurrency limit and no wait. The discount is not used.
+"""
+
+
+@dataclass(frozen=True)
+class PriceOptions:
+    """Options of the price calls — ``get_credits`` / ``options``.
+
+    ``service_tier`` overrides the client's. Pass the tier the generation will be sent with, so the quote is
+    the price it is charged: ``"priority"`` quotes the regular price, not the discounted one.
+    """
+
+    service_tier: ServiceTier | None = None
+
+
 @dataclass(frozen=True)
 class GenerationOptions:
     interval_ms: int | None = None

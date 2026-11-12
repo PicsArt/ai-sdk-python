@@ -96,6 +96,10 @@ Failures are always `ApiError` (`status`, `code`, message), as in the TypeScript
 - **Deep links** — `encode_deep_link_payload(model, context)` / `decode_deep_link_payload(encoded)`, compatible
   with the links the TypeScript SDK makes.
 - **Credits** — `await ai.get_credits(model, params)`; `catalog.pricing` for credit ranges.
+- **Service tier** — `GenerateOptions(service_tier="priority")` pays the regular price and skips the limits of
+  the user's discount (a concurrency limit that answers 429, and a wait after heavy use); the default `"auto"`
+  uses the discount when one applies. Set it for every call with `create_client(..., service_tier="priority")`,
+  and quote the same tier: `await ai.get_credits(model, params, PriceOptions(service_tier="priority"))`.
 
 ## Development
 

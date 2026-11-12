@@ -54,7 +54,9 @@ from .client.types import (
     GenerationOptions,
     GenerationProgressEvent,
     InputsTransformation,
+    PriceOptions,
     RunResponse,
+    ServiceTier,
 )
 from .client.workflows import ExecutionMode as ApiRunMode
 from .core.catalog_store import ModelCatalogFilters
@@ -183,6 +185,7 @@ __all__ = [
     "ParamOption",
     "PayloadDriveFolderOptions",
     "PayloadDriveOptions",
+    "PriceOptions",
     "PricingOptions",
     "ProviderInfo",
     "ReleaseTag",
@@ -190,6 +193,7 @@ __all__ = [
     "SaveParams",
     "SdkTransport",
     "SeedanceDraftTask",
+    "ServiceTier",
     "TextModelId",
     "TextModelInputById",
     "ToolUsage",

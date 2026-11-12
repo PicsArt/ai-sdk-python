@@ -20,6 +20,7 @@ from picsart_ai_sdk import (
     GenerationEventType,
     GenerationOptions,
     InputsTransformation,
+    PriceOptions,
     TransportResult,
     WorkflowSubmitRequest,
     create_client,
@@ -230,6 +231,46 @@ async def test_get_credits_and_options(ai: Any, platform: Platform) -> None:
     assert await ai.get_credits("backend-only-model", {"prompt": "x"}) == 5
     assert platform.options_calls[-1] == {"model": "backend-only-model", "params": {"prompt": "x"}}
     assert await ai.options("backend-only-model", {"prompt": "x"}) == {"credits": 5, "toolId": "t"}
+
+
+async def test_service_tier_per_call(ai: Any, platform: Platform) -> None:
+    priority = GenerateOptions(interval_ms=1, service_tier="priority")
+    await ai.generate("m", {"prompt": "p"}, priority)
+    assert platform.submits[-1]["options"]["service_tier"] == "priority"
+    assert platform.submits[-1]["options"]["inputs_transformation"] == {"downscale_oversized_images": False}
+    await ai.submit("m", {"prompt": "p"}, priority)
+    assert platform.submits[-1]["options"]["service_tier"] == "priority"
+
+    # Unset: not sent, so the platform default applies.
+    await ai.generate("m", {"prompt": "p"}, FAST)
+    assert "service_tier" not in platform.submits[-1]["options"]
+
+    # Text and run: the only option on the command — still no media options.
+    platform.results["task-1"] = {"status": "COMPLETED", "result": {"text": "hello"}}
+    await ai.generate_text("llm", {"prompt": "hi"}, priority)
+    assert platform.submits[-1]["options"] == {"service_tier": "priority"}
+    await ai.run("json-model", {"prompt": "x"}, priority)
+    assert platform.submits[-1]["options"] == {"service_tier": "priority"}
+
+    # A quote carries the tier it is asked for.
+    await ai.get_credits("m", {"prompt": "x"}, PriceOptions(service_tier="priority"))
+    assert platform.options_calls[-1]["options"] == {"service_tier": "priority"}
+    await ai.options("m", {"prompt": "x"}, PriceOptions(service_tier="priority"))
+    assert platform.options_calls[-1]["options"] == {"service_tier": "priority"}
+
+
+async def test_service_tier_client_default(platform: Platform) -> None:
+    ai = create_client(api_url=API, api_key="k", service_tier="priority")
+    await ai.generate("m", {"prompt": "p"}, FAST)
+    assert platform.submits[-1]["options"]["service_tier"] == "priority"
+    await ai.get_credits("m", {"prompt": "x"})
+    assert platform.options_calls[-1]["options"] == {"service_tier": "priority"}
+    # Per-call wins.
+    await ai.generate("m", {"prompt": "p"}, GenerateOptions(interval_ms=1, service_tier="auto"))
+    assert platform.submits[-1]["options"]["service_tier"] == "auto"
+    await ai.get_credits("m", {"prompt": "x"}, PriceOptions(service_tier="auto"))
+    assert platform.options_calls[-1]["options"] == {"service_tier": "auto"}
+    await ai.aclose()
 
 
 async def test_downscale_and_explicit_drive(platform: Platform) -> None:

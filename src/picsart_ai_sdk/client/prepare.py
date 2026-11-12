@@ -13,7 +13,7 @@ from ..core.errors import ApiError
 from ..core.js import nullish, truthy
 from ..core.response import throw_if_error_result
 from ..core.workflow import WorkflowStatusResult
-from .types import GenerateResult, GenerateResultItem, GenerateTextResult, RunResponse
+from .types import GenerateResult, GenerateResultItem, GenerateTextResult, RunResponse, ServiceTier
 
 MODELS_WORKFLOW = "v1/models"
 
@@ -25,15 +25,22 @@ def build_models_command(
     with_options: bool = False,
     drive: dict[str, Any] | None = None,
     downscale_oversized_images: bool | None = None,
+    service_tier: ServiceTier | None = None,
 ) -> dict[str, Any]:
-    """``{model, params}``; media generations add ``options`` (inputs transformation, optional drive)."""
-    if not with_options:
+    """``{model, params}``; media generations add ``options`` (inputs transformation, optional drive).
+
+    ``service_tier`` rides every route when set — text, run and price commands then carry it as their only
+    option. A command with neither has no ``options`` at all.
+    """
+    options: dict[str, Any] = {}
+    if with_options:
+        options["inputs_transformation"] = {"downscale_oversized_images": bool(downscale_oversized_images)}
+        if drive is not None:  # JS: any object, even {}, is truthy
+            options["drive"] = drive
+    if service_tier:
+        options["service_tier"] = service_tier
+    if not options:
         return {"model": model, "params": params}
-    options: dict[str, Any] = {
-        "inputs_transformation": {"downscale_oversized_images": bool(downscale_oversized_images)},
-    }
-    if drive is not None:  # JS: any object, even {}, is truthy
-        options["drive"] = drive
     return {"model": model, "params": params, "options": options}
 
 
