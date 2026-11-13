@@ -3955,6 +3955,7 @@ TypesafeEvaluateInput = TypedDict(
     "TypesafeEvaluateInput",
     {
         "state": str,
+        "imageUrls": NotRequired[list[str]],
         "questions": dict[str, dict[str, Any]],
     },
 )
