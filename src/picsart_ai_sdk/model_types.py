@@ -82,6 +82,7 @@ __all__ = [
     "Gemini3ProInput",
     "Gemini4ArgonInput",
     "Gemini4CarbonInput",
+    "GeminiDecision1Input",
     "GeminiNanoBanana21Input",
     "GeminiOmni11FlashPreviewInput",
     "GeminiOmni12FlashInput",
@@ -101,6 +102,7 @@ __all__ = [
     "Gpt61SolInput",
     "Gpt61TerraInput",
     "Gpt6AstraInput",
+    "Gpt6LunaDecisionsInput",
     "Gpt6LunaInput",
     "Gpt6SolInput",
     "GptImage15Input",
@@ -1166,6 +1168,26 @@ Gemini4CarbonInput = TypedDict(
 )
 
 
+GeminiDecision1QuestionsValue = TypedDict(
+    "GeminiDecision1QuestionsValue",
+    {
+        "type": Literal["noul", "choice", "score"],
+        "instructions": str,
+        "criteria": NotRequired[object],
+    },
+)
+
+
+GeminiDecision1Input = TypedDict(
+    "GeminiDecision1Input",
+    {
+        "input": str,
+        "imageUrls": NotRequired[list[str]],
+        "questions": dict[str, GeminiDecision1QuestionsValue],
+    },
+)
+
+
 GeminiNanoBanana21Input = TypedDict(
     "GeminiNanoBanana21Input",
     {
@@ -1357,6 +1379,28 @@ Gpt6LunaInput = TypedDict(
         "prompt": str,
         "imageUrls": NotRequired[list[str]],
         "thinking": NotRequired[Literal["off", "low", "medium", "high"]],
+    },
+)
+
+
+Gpt6LunaDecisionsQuestions = TypedDict(
+    "Gpt6LunaDecisionsQuestions",
+    {
+        "type": Literal["predicate", "choice", "score"],
+        "name": NotRequired[str],
+        "instructions": str,
+        "choices": NotRequired[object],
+        "levels": NotRequired[object],
+    },
+)
+
+
+Gpt6LunaDecisionsInput = TypedDict(
+    "Gpt6LunaDecisionsInput",
+    {
+        "input": str,
+        "imageUrls": NotRequired[list[str]],
+        "questions": list[Gpt6LunaDecisionsQuestions],
     },
 )
 
@@ -4163,6 +4207,7 @@ TypedModelId = Literal[
     "gemini-3.8-flash-tts",
     "gemini-4-argon",
     "gemini-4-carbon",
+    "gemini-decision-1",
     "gemini-nano-banana-2.1",
     "gemini-omni-1.1-flash-preview",
     "gemini-omni-1.2-flash",
@@ -4181,6 +4226,7 @@ TypedModelId = Literal[
     "gpt-5.6-terra",
     "gpt-6-astra",
     "gpt-6-luna",
+    "gpt-6-luna-decisions",
     "gpt-6-sol",
     "gpt-6.1-sol",
     "gpt-6.1-terra",
@@ -4436,6 +4482,8 @@ TextModelId = Literal[
 """Text-generation (LLM) models — ``generate_text()``."""
 
 JsonModelId = Literal[
+    "gemini-decision-1",
+    "gpt-6-luna-decisions",
     "typesafe-evaluate",
 ]
 """Structured-output (json-mode) models — ``run()``."""
@@ -4510,6 +4558,7 @@ ModelInputById = TypedDict(
         "gemini-3.8-flash-tts": Gemini38FlashTtsInput,
         "gemini-4-argon": Gemini4ArgonInput,
         "gemini-4-carbon": Gemini4CarbonInput,
+        "gemini-decision-1": GeminiDecision1Input,
         "gemini-nano-banana-2.1": GeminiNanoBanana21Input,
         "gemini-omni-1.1-flash-preview": GeminiOmni11FlashPreviewInput,
         "gemini-omni-1.2-flash": GeminiOmni12FlashInput,
@@ -4528,6 +4577,7 @@ ModelInputById = TypedDict(
         "gpt-5.6-terra": Gpt56TerraInput,
         "gpt-6-astra": Gpt6AstraInput,
         "gpt-6-luna": Gpt6LunaInput,
+        "gpt-6-luna-decisions": Gpt6LunaDecisionsInput,
         "gpt-6-sol": Gpt6SolInput,
         "gpt-6.1-sol": Gpt61SolInput,
         "gpt-6.1-terra": Gpt61TerraInput,
