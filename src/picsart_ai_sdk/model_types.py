@@ -278,6 +278,7 @@ __all__ = [
     "Seedance20WithoutModerationInput",
     "Seedance20WithoutModerationVideoEditInput",
     "Seedance20WithoutModerationVideoExtendInput",
+    "Seedance25FlashInput",
     "Seedance25Input",
     "Seedance25VideoEditInput",
     "Seedance25VideoExtendInput",
@@ -3735,6 +3736,26 @@ Seedance25Input = TypedDict(
 )
 
 
+Seedance25FlashInput = TypedDict(
+    "Seedance25FlashInput",
+    {
+        "prompt": NotRequired[str],
+        "aspectRatio": NotRequired[Literal["16:9", "9:16", "1:1", "4:3", "3:4", "21:9", "adaptive"]],
+        "resolution": NotRequired[Literal["480p", "720p"]],
+        "duration": NotRequired[Literal[-1, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]],
+        "generateAudio": NotRequired[bool],
+        "returnLastFrame": NotRequired[bool],
+        "outputFormat": NotRequired[Literal["mp4", "mov"]],
+        "omniReferenceTaskType": NotRequired[Literal["auto", "reference", "edit", "extend"]],
+        "imageUrls": NotRequired[list[str]],
+        "videoUrls": NotRequired[list[str]],
+        "audioUrls": NotRequired[list[str]],
+        "startFrame": NotRequired[str],
+        "endFrame": NotRequired[str],
+    },
+)
+
+
 Seedance25VideoEditInput = TypedDict(
     "Seedance25VideoEditInput",
     {
@@ -4403,6 +4424,7 @@ TypedModelId = Literal[
     "seedance-2.0-without-moderation-video-edit",
     "seedance-2.0-without-moderation-video-extend",
     "seedance-2.5",
+    "seedance-2.5-flash",
     "seedance-2.5-video-edit",
     "seedance-2.5-video-extend",
     "seedance-2.5-without-moderation",
@@ -4754,6 +4776,7 @@ ModelInputById = TypedDict(
         "seedance-2.0-without-moderation-video-edit": Seedance20WithoutModerationVideoEditInput,
         "seedance-2.0-without-moderation-video-extend": Seedance20WithoutModerationVideoExtendInput,
         "seedance-2.5": Seedance25Input,
+        "seedance-2.5-flash": Seedance25FlashInput,
         "seedance-2.5-video-edit": Seedance25VideoEditInput,
         "seedance-2.5-video-extend": Seedance25VideoExtendInput,
         "seedance-2.5-without-moderation": Seedance25WithoutModerationInput,
