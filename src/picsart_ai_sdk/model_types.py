@@ -73,7 +73,6 @@ __all__ = [
     "Gemini31FlashImageInput",
     "Gemini31FlashLiteImageInput",
     "Gemini35FlashLiteInput",
-    "Gemini36FlashInput",
     "Gemini37FlashInput",
     "Gemini38FlashInput",
     "Gemini38FlashLiteTtsInput",
@@ -1047,16 +1046,6 @@ Gemini35FlashLiteInput = TypedDict(
     {
         "prompt": str,
         "imageUrls": NotRequired[list[str]],
-    },
-)
-
-
-Gemini36FlashInput = TypedDict(
-    "Gemini36FlashInput",
-    {
-        "prompt": str,
-        "imageUrls": NotRequired[list[str]],
-        "thinking": NotRequired[Literal["off", "low", "medium", "high"]],
     },
 )
 
@@ -4222,7 +4211,6 @@ TypedModelId = Literal[
     "gemini-3.1-flash-image",
     "gemini-3.1-flash-lite-image",
     "gemini-3.5-flash-lite",
-    "gemini-3.6-flash",
     "gemini-3.7-flash",
     "gemini-3.8-flash",
     "gemini-3.8-flash-lite-tts",
@@ -4472,7 +4460,6 @@ TextModelId = Literal[
     "gemini-2.5-flash",
     "gemini-3-pro",
     "gemini-3.5-flash-lite",
-    "gemini-3.6-flash",
     "gemini-3.7-flash",
     "gemini-3.8-flash",
     "gemini-4-argon",
@@ -4574,7 +4561,6 @@ ModelInputById = TypedDict(
         "gemini-3.1-flash-image": Gemini31FlashImageInput,
         "gemini-3.1-flash-lite-image": Gemini31FlashLiteImageInput,
         "gemini-3.5-flash-lite": Gemini35FlashLiteInput,
-        "gemini-3.6-flash": Gemini36FlashInput,
         "gemini-3.7-flash": Gemini37FlashInput,
         "gemini-3.8-flash": Gemini38FlashInput,
         "gemini-3.8-flash-lite-tts": Gemini38FlashLiteTtsInput,
@@ -4827,7 +4813,6 @@ TextModelInputById = TypedDict(
         "gemini-2.5-flash": Gemini25FlashInput,
         "gemini-3-pro": Gemini3ProInput,
         "gemini-3.5-flash-lite": Gemini35FlashLiteInput,
-        "gemini-3.6-flash": Gemini36FlashInput,
         "gemini-3.7-flash": Gemini37FlashInput,
         "gemini-3.8-flash": Gemini38FlashInput,
         "gemini-4-argon": Gemini4ArgonInput,
