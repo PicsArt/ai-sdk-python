@@ -2028,6 +2028,8 @@ KlingImage40Input = TypedDict(
         "skill": NotRequired[Literal["ecommerce", "webpage"]],
         "length": NotRequired[Literal["short", "medium", "long"]],
         "imageUrls": NotRequired[list[str]],
+        "styleImageUrl": NotRequired[str],
+        "subjectImageUrl": NotRequired[str],
         "elementList": NotRequired[list[KlingImage40ElementList]],
     },
 )
