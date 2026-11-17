@@ -2241,7 +2241,7 @@ KlingV4Input = TypedDict(
     "KlingV4Input",
     {
         "prompt": str,
-        "aspectRatio": NotRequired[Literal["16:9", "9:16", "1:1", "21:9"]],
+        "aspectRatio": NotRequired[Literal["16:9", "9:16", "1:1", "21:9", "4:3", "3:4"]],
         "duration": NotRequired[int],
         "resolution": NotRequired[Literal["720p", "1080p"]],
         "startFrame": NotRequired[str],
@@ -2255,7 +2255,7 @@ KlingV4FlashInput = TypedDict(
     "KlingV4FlashInput",
     {
         "prompt": str,
-        "aspectRatio": NotRequired[Literal["16:9", "9:16", "1:1", "21:9"]],
+        "aspectRatio": NotRequired[Literal["16:9", "9:16", "1:1", "21:9", "4:3", "3:4"]],
         "duration": NotRequired[int],
         "startFrame": NotRequired[str],
     },
@@ -2274,7 +2274,7 @@ KlingV4FlashOmniInput = TypedDict(
     "KlingV4FlashOmniInput",
     {
         "prompt": str,
-        "aspectRatio": NotRequired[Literal["16:9", "9:16", "1:1", "21:9", "adaptive"]],
+        "aspectRatio": NotRequired[Literal["16:9", "9:16", "1:1", "21:9", "4:3", "3:4", "adaptive"]],
         "duration": NotRequired[int],
         "startFrame": NotRequired[str],
         "imageUrls": NotRequired[list[str]],
@@ -2297,7 +2297,7 @@ KlingV4OmniInput = TypedDict(
     "KlingV4OmniInput",
     {
         "prompt": str,
-        "aspectRatio": NotRequired[Literal["16:9", "9:16", "1:1", "21:9", "adaptive"]],
+        "aspectRatio": NotRequired[Literal["16:9", "9:16", "1:1", "21:9", "4:3", "3:4", "adaptive"]],
         "duration": NotRequired[int],
         "resolution": NotRequired[Literal["720p", "1080p"]],
         "startFrame": NotRequired[str],
