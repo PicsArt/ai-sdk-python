@@ -100,6 +100,8 @@ __all__ = [
     "Gpt5MiniInput",
     "Gpt61SolInput",
     "Gpt61TerraInput",
+    "Gpt62AstraInput",
+    "Gpt62SolInput",
     "Gpt6AstraInput",
     "Gpt6LunaDecisionsInput",
     "Gpt6LunaInput",
@@ -1417,6 +1419,26 @@ Gpt61SolInput = TypedDict(
 
 Gpt61TerraInput = TypedDict(
     "Gpt61TerraInput",
+    {
+        "prompt": str,
+        "imageUrls": NotRequired[list[str]],
+        "thinking": NotRequired[Literal["off", "low", "medium", "high"]],
+    },
+)
+
+
+Gpt62AstraInput = TypedDict(
+    "Gpt62AstraInput",
+    {
+        "prompt": str,
+        "imageUrls": NotRequired[list[str]],
+        "thinking": NotRequired[Literal["off", "low", "medium", "high"]],
+    },
+)
+
+
+Gpt62SolInput = TypedDict(
+    "Gpt62SolInput",
     {
         "prompt": str,
         "imageUrls": NotRequired[list[str]],
@@ -4242,6 +4264,8 @@ TypedModelId = Literal[
     "gpt-6-sol",
     "gpt-6.1-sol",
     "gpt-6.1-terra",
+    "gpt-6.2-astra",
+    "gpt-6.2-sol",
     "gpt-image-1",
     "gpt-image-1.5",
     "gpt-image-2",
@@ -4483,6 +4507,8 @@ TextModelId = Literal[
     "gpt-6-sol",
     "gpt-6.1-sol",
     "gpt-6.1-terra",
+    "gpt-6.2-astra",
+    "gpt-6.2-sol",
     "grok-4.7",
     "kimi-k3",
     "kimi-k3.1-pro",
@@ -4592,6 +4618,8 @@ ModelInputById = TypedDict(
         "gpt-6-sol": Gpt6SolInput,
         "gpt-6.1-sol": Gpt61SolInput,
         "gpt-6.1-terra": Gpt61TerraInput,
+        "gpt-6.2-astra": Gpt62AstraInput,
+        "gpt-6.2-sol": Gpt62SolInput,
         "gpt-image-1": GptImage1Input,
         "gpt-image-1.5": GptImage15Input,
         "gpt-image-2": GptImage2Input,
@@ -4836,6 +4864,8 @@ TextModelInputById = TypedDict(
         "gpt-6-sol": Gpt6SolInput,
         "gpt-6.1-sol": Gpt61SolInput,
         "gpt-6.1-terra": Gpt61TerraInput,
+        "gpt-6.2-astra": Gpt62AstraInput,
+        "gpt-6.2-sol": Gpt62SolInput,
         "grok-4.7": Grok47Input,
         "kimi-k3": KimiK3Input,
         "kimi-k3.1-pro": KimiK31ProInput,
