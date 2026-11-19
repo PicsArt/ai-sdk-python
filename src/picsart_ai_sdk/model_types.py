@@ -2270,7 +2270,7 @@ KlingV4Input = TypedDict(
         "duration": NotRequired[int],
         "resolution": NotRequired[Literal["720p", "1080p"]],
         "startFrame": NotRequired[str],
-        "imageUrls": NotRequired[list[str]],
+        "middleFrames": NotRequired[list[str]],
         "endFrame": NotRequired[str],
     },
 )
