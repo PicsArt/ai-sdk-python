@@ -35,6 +35,7 @@ __all__ = [
     "CreatifyAuroraInput",
     "CreatifyBorealInput",
     "DepthAnythingVideoInput",
+    "Elephant1Input",
     "ElevenAudioIsolationInput",
     "ElevenDialogueV4Input",
     "ElevenDubbingInput",
@@ -187,6 +188,7 @@ __all__ = [
     "Lyria35Input",
     "Lyria3ClipInput",
     "Lyria3ProInput",
+    "Mammoth1Input",
     "MinimaxH3ContextIrInput",
     "MinimaxH3HighspeedInput",
     "MinimaxH3ImageHighspeedInput",
@@ -514,6 +516,16 @@ DepthAnythingVideoInput = TypedDict(
         "colormap": NotRequired[Literal["grayscale", "turbo", "inferno", "magma", "viridis"]],
         "resolution": NotRequired[Literal["auto", "360p", "480p", "720p", "1080p"]],
         "sideBySide": NotRequired[bool],
+    },
+)
+
+
+Elephant1Input = TypedDict(
+    "Elephant1Input",
+    {
+        "state": str,
+        "imageUrls": NotRequired[list[str]],
+        "questions": dict[str, dict[str, Any]],
     },
 )
 
@@ -2566,6 +2578,16 @@ Lyria35Input = TypedDict(
 )
 
 
+Mammoth1Input = TypedDict(
+    "Mammoth1Input",
+    {
+        "state": str,
+        "imageUrls": NotRequired[list[str]],
+        "questions": dict[str, dict[str, Any]],
+    },
+)
+
+
 MinimaxH3Input = TypedDict(
     "MinimaxH3Input",
     {
@@ -4195,6 +4217,7 @@ TypedModelId = Literal[
     "creatify-aurora",
     "creatify-boreal",
     "depth-anything-video",
+    "elephant-1",
     "eleven-audio-isolation",
     "eleven-dialogue-v4",
     "eleven-dubbing",
@@ -4346,6 +4369,7 @@ TypedModelId = Literal[
     "lyria-3-clip",
     "lyria-3-pro",
     "lyria-3.5",
+    "mammoth-1",
     "minimax-h3",
     "minimax-h3-context-ir",
     "minimax-h3-highspeed",
@@ -4520,8 +4544,10 @@ TextModelId = Literal[
 """Text-generation (LLM) models — ``generate_text()``."""
 
 JsonModelId = Literal[
+    "elephant-1",
     "gemini-decision-1",
     "gpt-6-luna-decisions",
+    "mammoth-1",
     "typesafe-evaluate",
 ]
 """Structured-output (json-mode) models — ``run()``."""
@@ -4549,6 +4575,7 @@ ModelInputById = TypedDict(
         "creatify-aurora": CreatifyAuroraInput,
         "creatify-boreal": CreatifyBorealInput,
         "depth-anything-video": DepthAnythingVideoInput,
+        "elephant-1": Elephant1Input,
         "eleven-audio-isolation": ElevenAudioIsolationInput,
         "eleven-dialogue-v4": ElevenDialogueV4Input,
         "eleven-dubbing": ElevenDubbingInput,
@@ -4700,6 +4727,7 @@ ModelInputById = TypedDict(
         "lyria-3-clip": Lyria3ClipInput,
         "lyria-3-pro": Lyria3ProInput,
         "lyria-3.5": Lyria35Input,
+        "mammoth-1": Mammoth1Input,
         "minimax-h3": MinimaxH3Input,
         "minimax-h3-context-ir": MinimaxH3ContextIrInput,
         "minimax-h3-highspeed": MinimaxH3HighspeedInput,
