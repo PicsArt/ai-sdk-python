@@ -64,6 +64,7 @@ __all__ = [
     "Flux3VideoInput",
     "FluxKontextMaxInput",
     "FluxKontextProInput",
+    "FluxLipSyncInput",
     "FluxVideoEditInput",
     "FluxVideoOutpaintInput",
     "FluxVideoUpscaleInput",
@@ -876,6 +877,17 @@ FluxKontextProInput = TypedDict(
         "aspectRatio": NotRequired[Literal["1:1", "16:9", "9:16", "4:3", "3:4", "21:9", "9:21"]],
         "count": NotRequired[Literal[1, 2, 4, 6, 8, 10]],
         "imageUrls": NotRequired[list[str]],
+    },
+)
+
+
+FluxLipSyncInput = TypedDict(
+    "FluxLipSyncInput",
+    {
+        "videoUrl": str,
+        "prompt": NotRequired[str],
+        "seed": NotRequired[int],
+        "safetyTolerance": NotRequired[float],
     },
 )
 
@@ -4246,6 +4258,7 @@ TypedModelId = Literal[
     "flux-3-video",
     "flux-kontext-max",
     "flux-kontext-pro",
+    "flux-lip-sync",
     "flux-video-edit",
     "flux-video-outpaint",
     "flux-video-upscale",
@@ -4604,6 +4617,7 @@ ModelInputById = TypedDict(
         "flux-3-video": Flux3VideoInput,
         "flux-kontext-max": FluxKontextMaxInput,
         "flux-kontext-pro": FluxKontextProInput,
+        "flux-lip-sync": FluxLipSyncInput,
         "flux-video-edit": FluxVideoEditInput,
         "flux-video-outpaint": FluxVideoOutpaintInput,
         "flux-video-upscale": FluxVideoUpscaleInput,
