@@ -83,6 +83,7 @@ __all__ = [
     "Gemini3ProInput",
     "Gemini4ArgonInput",
     "Gemini4CarbonInput",
+    "Gemini4NeonInput",
     "GeminiDecision1Input",
     "GeminiNanoBanana21Input",
     "GeminiNanoBanana3Input",
@@ -1176,6 +1177,17 @@ Gemini4ArgonInput = TypedDict(
 
 Gemini4CarbonInput = TypedDict(
     "Gemini4CarbonInput",
+    {
+        "prompt": str,
+        "imageUrls": NotRequired[list[str]],
+        "videoUrl": NotRequired[str],
+        "thinking": NotRequired[Literal["off", "low", "medium", "high"]],
+    },
+)
+
+
+Gemini4NeonInput = TypedDict(
+    "Gemini4NeonInput",
     {
         "prompt": str,
         "imageUrls": NotRequired[list[str]],
@@ -4294,6 +4306,7 @@ TypedModelId = Literal[
     "gemini-3.8-flash-tts",
     "gemini-4-argon",
     "gemini-4-carbon",
+    "gemini-4-neon",
     "gemini-decision-1",
     "gemini-nano-banana-2.1",
     "gemini-nano-banana-3",
@@ -4545,6 +4558,7 @@ TextModelId = Literal[
     "gemini-3.8-flash",
     "gemini-4-argon",
     "gemini-4-carbon",
+    "gemini-4-neon",
     "gpt-4.1-mini",
     "gpt-4.1-nano",
     "gpt-4o",
@@ -4654,6 +4668,7 @@ ModelInputById = TypedDict(
         "gemini-3.8-flash-tts": Gemini38FlashTtsInput,
         "gemini-4-argon": Gemini4ArgonInput,
         "gemini-4-carbon": Gemini4CarbonInput,
+        "gemini-4-neon": Gemini4NeonInput,
         "gemini-decision-1": GeminiDecision1Input,
         "gemini-nano-banana-2.1": GeminiNanoBanana21Input,
         "gemini-nano-banana-3": GeminiNanoBanana3Input,
@@ -4908,6 +4923,7 @@ TextModelInputById = TypedDict(
         "gemini-3.8-flash": Gemini38FlashInput,
         "gemini-4-argon": Gemini4ArgonInput,
         "gemini-4-carbon": Gemini4CarbonInput,
+        "gemini-4-neon": Gemini4NeonInput,
         "gpt-4.1-mini": Gpt41MiniInput,
         "gpt-4.1-nano": Gpt41NanoInput,
         "gpt-4o": Gpt4oInput,
