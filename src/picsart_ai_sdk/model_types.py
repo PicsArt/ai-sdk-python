@@ -85,6 +85,7 @@ __all__ = [
     "Gemini4CarbonInput",
     "GeminiDecision1Input",
     "GeminiNanoBanana21Input",
+    "GeminiNanoBanana3Input",
     "GeminiOmni11FlashPreviewInput",
     "GeminiOmni12FlashInput",
     "GeminiOmniFlashPreviewInput",
@@ -1210,6 +1211,20 @@ GeminiNanoBanana21Input = TypedDict(
         "prompt": str,
         "aspectRatio": NotRequired[Literal["1:1", "16:9", "9:16", "3:4", "4:3", "2:3", "21:9", "auto"]],
         "resolution": NotRequired[Literal["1K", "2K", "4K"]],
+        "count": NotRequired[Literal[1, 2, 4, 6, 8, 10]],
+        "seed": NotRequired[int],
+        "thinkingLevel": NotRequired[Literal["minimal", "medium", "high"]],
+        "imageUrls": NotRequired[list[str]],
+    },
+)
+
+
+GeminiNanoBanana3Input = TypedDict(
+    "GeminiNanoBanana3Input",
+    {
+        "prompt": str,
+        "aspectRatio": NotRequired[Literal["1:1", "16:9", "9:16", "3:4", "4:3", "3:2", "2:3", "4:5", "5:4", "4:1", "1:4", "8:1", "1:8", "21:9", "auto"]],
+        "resolution": NotRequired[Literal["1K", "2K", "4K", "8K"]],
         "count": NotRequired[Literal[1, 2, 4, 6, 8, 10]],
         "seed": NotRequired[int],
         "thinkingLevel": NotRequired[Literal["minimal", "medium", "high"]],
@@ -4281,6 +4296,7 @@ TypedModelId = Literal[
     "gemini-4-carbon",
     "gemini-decision-1",
     "gemini-nano-banana-2.1",
+    "gemini-nano-banana-3",
     "gemini-omni-1.1-flash-preview",
     "gemini-omni-1.2-flash",
     "gemini-omni-flash-preview",
@@ -4640,6 +4656,7 @@ ModelInputById = TypedDict(
         "gemini-4-carbon": Gemini4CarbonInput,
         "gemini-decision-1": GeminiDecision1Input,
         "gemini-nano-banana-2.1": GeminiNanoBanana21Input,
+        "gemini-nano-banana-3": GeminiNanoBanana3Input,
         "gemini-omni-1.1-flash-preview": GeminiOmni11FlashPreviewInput,
         "gemini-omni-1.2-flash": GeminiOmni12FlashInput,
         "gemini-omni-flash-preview": GeminiOmniFlashPreviewInput,
