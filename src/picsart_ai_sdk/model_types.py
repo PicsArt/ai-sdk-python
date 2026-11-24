@@ -271,6 +271,7 @@ __all__ = [
     "Sam3VideoInput",
     "SeedAudio10Input",
     "SeedAudio10MultilingualInput",
+    "SeedTts30Input",
     "Seedance15ProInput",
     "Seedance20FastInput",
     "Seedance20FastVideoEditInput",
@@ -3583,6 +3584,21 @@ SeedAudio10MultilingualInput = TypedDict(
 )
 
 
+SeedTts30Input = TypedDict(
+    "SeedTts30Input",
+    {
+        "prompt": str,
+        "voiceId": NotRequired[str],
+        "instructions": NotRequired[str],
+        "format": NotRequired[Literal["mp3", "wav", "pcm", "ogg_opus"]],
+        "sampleRate": NotRequired[Literal[8000, 16000, 22050, 24000, 32000, 44100, 48000]],
+        "speed": NotRequired[float],
+        "volume": NotRequired[float],
+        "pitch": NotRequired[float],
+    },
+)
+
+
 Seedance15ProInput = TypedDict(
     "Seedance15ProInput",
     {
@@ -4492,6 +4508,7 @@ TypedModelId = Literal[
     "sam-3-video",
     "seed-audio-1.0",
     "seed-audio-1.0-multilingual",
+    "seed-tts-3.0",
     "seedance-1.5-pro",
     "seedance-2.0",
     "seedance-2.0-fast",
@@ -4854,6 +4871,7 @@ ModelInputById = TypedDict(
         "sam-3-video": Sam3VideoInput,
         "seed-audio-1.0": SeedAudio10Input,
         "seed-audio-1.0-multilingual": SeedAudio10MultilingualInput,
+        "seed-tts-3.0": SeedTts30Input,
         "seedance-1.5-pro": Seedance15ProInput,
         "seedance-2.0": Seedance20Input,
         "seedance-2.0-fast": Seedance20FastInput,
