@@ -45,6 +45,7 @@ async def test_api_key_fetch_sets_auth_and_gateway_headers(http: httpx.AsyncClie
     headers = route.calls[0].request.headers
     assert headers["authorization"] == "Bearer abc"
     assert headers["platform"] == "api" and headers["x-touchpoint"] == "sdk"
+    assert headers["x-picsart-sdk"].startswith("python/")
     assert headers["x-config-id"] == ""
 
 
@@ -66,10 +67,12 @@ async def test_custom_fetch_owns_headers(http: httpx.AsyncClient) -> None:
         seen.append(init)
         return ok({"id": "t"})
 
-    assert maybe_fetch(fetch=mine, api_key="ignored", http=http) is mine
+    fetch = maybe_fetch(fetch=mine, api_key="ignored", http=http)
+    assert fetch is not None
     assert maybe_fetch(fetch=None, api_key=None, http=http) is None
-    await build_transport(create_workflows_client(BASE, mine)).submit(WorkflowSubmitRequest("v1/models", {}))
+    await build_transport(create_workflows_client(BASE, fetch)).submit(WorkflowSubmitRequest("v1/models", {}))
     assert "authorization" not in seen[0]["headers"] and "platform" not in seen[0]["headers"]
+    assert seen[0]["headers"]["X-Picsart-Sdk"].startswith("python/")
 
 
 async def fetch_returning(response: httpx.Response) -> Any:

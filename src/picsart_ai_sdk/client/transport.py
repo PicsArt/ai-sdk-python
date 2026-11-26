@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import asyncio
 import re
+from importlib import metadata
 from typing import Any, cast
 
 import httpx
@@ -24,13 +25,25 @@ from .workflows import ExecutionMode, WorkflowsClient
 # Attribution headers the gateway requires on every request; set only when absent.
 GATEWAY_HEADERS: dict[str, str] = {"platform": "api", "X-Touchpoint": "sdk"}
 
+try:
+    _VERSION = metadata.version("picsart-ai-sdk")
+except metadata.PackageNotFoundError:  # running from a source tree that is not installed
+    _VERSION = "0.0.0"
+
+# Marks every request the SDK makes, on the ``api_key`` and the custom-``fetch`` path alike.
+SDK_HEADERS: dict[str, str] = {"X-Picsart-Sdk": f"python/{_VERSION}"}
+
 
 def maybe_fetch(
     *, fetch: AuthenticatedFetch | None, api_key: str | None, http: httpx.AsyncClient | None
 ) -> AuthenticatedFetch | None:
-    """The caller's ``fetch``, else one built from ``api_key`` on ``http``, else ``None``."""
+    """The caller's ``fetch``, else one built from ``api_key`` on ``http``, else ``None``; both add the SDK header."""
     if fetch is not None:
-        return fetch
+
+        async def tagged(url: str, init: FetchInit) -> httpx.Response:
+            return await fetch(url, {**init, "headers": {**(init.get("headers") or {}), **SDK_HEADERS}})
+
+        return tagged
     if api_key and http is not None:
         token = re.sub(r"^Bearer\s+", "", api_key, flags=re.IGNORECASE)
 
@@ -42,7 +55,7 @@ def maybe_fetch(
             for name, value in GATEWAY_HEADERS.items():
                 if name.lower() not in present:
                     headers[name] = value
-            return await send(http, url, {**init, "headers": headers})
+            return await send(http, url, {**init, "headers": {**headers, **SDK_HEADERS}})
 
         return authed
     return None
