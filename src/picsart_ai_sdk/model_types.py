@@ -302,6 +302,7 @@ __all__ = [
     "Seedream55Input",
     "TextModelId",
     "TextModelInputById",
+    "TopazUpscaleImageGenerativeInput",
     "TopazUpscaleImageInput",
     "TopazUpscaleVideoInput",
     "TypedModelId",
@@ -4055,6 +4056,15 @@ TopazUpscaleImageInput = TypedDict(
 )
 
 
+TopazUpscaleImageGenerativeInput = TypedDict(
+    "TopazUpscaleImageGenerativeInput",
+    {
+        "imageUrls": list[str],
+        "model": NotRequired[Literal["Wonder 4", "Wonder 3.5", "Wonder 3", "Wonder 2", "Wonder", "Recover 3", "Standard MAX", "Redefine", "Recovery V2", "Recovery"]],
+    },
+)
+
+
 TopazUpscaleVideoInput = TypedDict(
     "TopazUpscaleVideoInput",
     {
@@ -4538,6 +4548,7 @@ TypedModelId = Literal[
     "seedream-5.0-pro",
     "seedream-5.5",
     "topaz-upscale-image",
+    "topaz-upscale-image-generative",
     "topaz-upscale-video",
     "typesafe-evaluate",
     "veed-fabric-v1",
@@ -4901,6 +4912,7 @@ ModelInputById = TypedDict(
         "seedream-5.0-pro": Seedream50ProInput,
         "seedream-5.5": Seedream55Input,
         "topaz-upscale-image": TopazUpscaleImageInput,
+        "topaz-upscale-image-generative": TopazUpscaleImageGenerativeInput,
         "topaz-upscale-video": TopazUpscaleVideoInput,
         "typesafe-evaluate": TypesafeEvaluateInput,
         "veed-fabric-v1": VeedFabricV1Input,
