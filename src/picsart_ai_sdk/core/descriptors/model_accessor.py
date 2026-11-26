@@ -223,6 +223,8 @@ class ModelDescriptor:
                 badges=d.badge if d.badge is not None else [],
                 provider=ProviderInfo(d.provider, d.provider_name, d.provider_color, d.provider_label),
                 added_at=d.added_at,
+                released_at=d.released_at,
+                updated_at=d.updated_at,
                 release=d.release if d.release is not None else "production",
             )
         return self._meta

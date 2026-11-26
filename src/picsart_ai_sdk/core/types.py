@@ -71,6 +71,8 @@ class ModelDefinition:
     badge: list[str] | None = None
     release: str | None = None
     added_at: str | None = None
+    released_at: str | None = None
+    updated_at: str | None = None
     estimated_time: float | dict[str, float] | None = None
     deprecated: bool | None = None
     constraints: list[Constraint] | None = None

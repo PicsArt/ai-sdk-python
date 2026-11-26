@@ -1,5 +1,5 @@
 {
- "tsSdkVersion": "7.7.0",
+ "tsSdkVersion": "7.44.0",
  "generatedBy": "scripts/golden/generate_golden.mts",
  "catalog": {
   "status": "success",
@@ -1477,6 +1477,7 @@
        "minSidePixels": 32,
        "maxShortSidePixels": 4096,
        "maxDurationSec": 60,
+       "maxTotalDurationSec": 90,
        "maxBytes": 30000000,
        "label": "Image"
       },
@@ -1505,6 +1506,9 @@
       "popular"
      ],
      "release": "production",
+     "addedAt": "2026-05-01",
+     "releasedAt": "2026-05-20",
+     "updatedAt": "2026-11-12",
      "constraints": [
       {
        "when": {
@@ -3413,6 +3417,8 @@
      "label": "K"
     },
     "addedAt": "2026-02-06",
+    "releasedAt": null,
+    "updatedAt": null,
     "release": "production"
    }
   },
@@ -5335,6 +5341,8 @@
      "label": "K"
     },
     "addedAt": "2026-10-16",
+    "releasedAt": null,
+    "updatedAt": null,
     "release": "production"
    }
   },
@@ -6897,6 +6905,8 @@
      "label": "CR"
     },
     "addedAt": "2026-09-22",
+    "releasedAt": null,
+    "updatedAt": null,
     "release": "production"
    }
   },
@@ -8048,6 +8058,8 @@
      "label": "BD"
     },
     "addedAt": "2026-02-06",
+    "releasedAt": null,
+    "updatedAt": null,
     "release": "production"
    }
   },
@@ -9038,6 +9050,8 @@
      "label": "F"
     },
     "addedAt": "2026-02-06",
+    "releasedAt": null,
+    "updatedAt": null,
     "release": "production"
    }
   },
@@ -10663,6 +10677,8 @@
      "label": "F"
     },
     "addedAt": "2026-07-27",
+    "releasedAt": null,
+    "updatedAt": null,
     "release": "production"
    }
   },
@@ -12406,6 +12422,8 @@
      "label": "XI"
     },
     "addedAt": "2026-02-06",
+    "releasedAt": null,
+    "updatedAt": null,
     "release": "production"
    }
   },
@@ -13402,6 +13420,8 @@
      "label": "XI"
     },
     "addedAt": "2026-09-29",
+    "releasedAt": null,
+    "updatedAt": null,
     "release": "production"
    }
   },
@@ -14401,6 +14421,8 @@
      "label": "HG"
     },
     "addedAt": "2026-03-17",
+    "releasedAt": null,
+    "updatedAt": null,
     "release": "production"
    }
   },
@@ -15479,6 +15501,8 @@
      "label": "AA"
     },
     "addedAt": "2026-06-12",
+    "releasedAt": null,
+    "updatedAt": null,
     "release": "production"
    }
   },
@@ -16167,6 +16191,8 @@
      "label": "G"
     },
     "addedAt": "2026-09-16",
+    "releasedAt": null,
+    "updatedAt": null,
     "release": "production"
    }
   },
@@ -16711,6 +16737,8 @@
      "label": "TS"
     },
     "addedAt": "2026-10-05",
+    "releasedAt": null,
+    "updatedAt": null,
     "release": "production"
    }
   },
@@ -17746,6 +17774,7 @@
      "minSidePixels": 32,
      "maxShortSidePixels": 4096,
      "maxDurationSec": 60,
+     "maxTotalDurationSec": 90,
      "maxBytes": 30000000
     },
     {
@@ -17842,7 +17871,9 @@
      "color": "#123456",
      "label": "FX"
     },
-    "addedAt": null,
+    "addedAt": "2026-05-01",
+    "releasedAt": "2026-05-20",
+    "updatedAt": "2026-11-12",
     "release": "production"
    }
   },

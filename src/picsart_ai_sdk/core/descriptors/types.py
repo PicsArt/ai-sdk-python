@@ -60,6 +60,8 @@ class ModelMeta:
     badges: list[str]
     provider: ProviderInfo
     added_at: str | None
+    released_at: str | None
+    updated_at: str | None
     release: str
 
 
