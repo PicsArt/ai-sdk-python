@@ -271,6 +271,7 @@ __all__ = [
     "Sam3VideoInput",
     "SeedAudio10Input",
     "SeedAudio10MultilingualInput",
+    "SeedAudio15Input",
     "SeedTts30Input",
     "Seedance15ProInput",
     "Seedance20FastInput",
@@ -3585,6 +3586,27 @@ SeedAudio10MultilingualInput = TypedDict(
 )
 
 
+SeedAudio15Input = TypedDict(
+    "SeedAudio15Input",
+    {
+        "mode": NotRequired[Literal["text-to-audio", "video-dubbing", "video-translation", "stem-separation"]],
+        "prompt": NotRequired[str],
+        "audioUrls": NotRequired[list[str]],
+        "imageUrls": NotRequired[list[str]],
+        "videoUrl": NotRequired[str],
+        "audioUrl": NotRequired[str],
+        "targetLanguage": NotRequired[Literal["en", "zh", "ja", "ko", "de", "fr", "pt-BR", "th", "id", "vi", "ms", "fil", "it", "ru", "nl", "pl", "tr", "sv", "es-ES", "es-MX", "ar", "pt-PT", "fi", "da", "no", "cs", "hu", "el", "ro", "hi"]],
+        "includeVideoAndSubtitles": NotRequired[bool],
+        "dialogueEnhancement": NotRequired[Literal["off", "low", "medium", "high"]],
+        "format": NotRequired[Literal["wav", "mp3", "pcm", "ogg_opus"]],
+        "sampleRate": NotRequired[Literal[8000, 16000, 24000, 32000, 44100, 48000]],
+        "speechRate": NotRequired[float],
+        "loudnessRate": NotRequired[float],
+        "pitchRate": NotRequired[float],
+    },
+)
+
+
 SeedTts30Input = TypedDict(
     "SeedTts30Input",
     {
@@ -4518,6 +4540,7 @@ TypedModelId = Literal[
     "sam-3-video",
     "seed-audio-1.0",
     "seed-audio-1.0-multilingual",
+    "seed-audio-1.5",
     "seed-tts-3.0",
     "seedance-1.5-pro",
     "seedance-2.0",
@@ -4882,6 +4905,7 @@ ModelInputById = TypedDict(
         "sam-3-video": Sam3VideoInput,
         "seed-audio-1.0": SeedAudio10Input,
         "seed-audio-1.0-multilingual": SeedAudio10MultilingualInput,
+        "seed-audio-1.5": SeedAudio15Input,
         "seed-tts-3.0": SeedTts30Input,
         "seedance-1.5-pro": Seedance15ProInput,
         "seedance-2.0": Seedance20Input,
