@@ -57,6 +57,7 @@ __all__ = [
     "Flux2FlexInput",
     "Flux2MaxInput",
     "Flux2ProInput",
+    "Flux31ImageInput",
     "Flux3ImageInput",
     "Flux3ImageKleinInput",
     "Flux3MaxInput",
@@ -860,6 +861,37 @@ Flux3VideoInput = TypedDict(
         "generateAudio": NotRequired[bool],
         "safetyTolerance": NotRequired[float],
         "draft": NotRequired[bool],
+    },
+)
+
+
+Flux31ImageBoundingBoxes = TypedDict(
+    "Flux31ImageBoundingBoxes",
+    {
+        "id": str,
+        "desc": str,
+        "from": str,
+        "bbox": object,
+        "srcBbox": object,
+        "tgtBbox": object,
+    },
+)
+
+
+Flux31ImageInput = TypedDict(
+    "Flux31ImageInput",
+    {
+        "prompt": str,
+        "mode": NotRequired[Literal["quality", "fast"]],
+        "aspectRatio": NotRequired[Literal["auto", "match_first_image", "21:9", "2:1", "16:9", "3:2", "7:5", "4:3", "5:4", "1:1", "4:5", "3:4", "5:7", "2:3", "9:16", "1:2", "9:21"]],
+        "resolution": NotRequired[Literal["1MP", "2MP", "4MP", "8MP", "12MP", "16MP"]],
+        "count": NotRequired[Literal[1, 2, 4, 6, 8, 10]],
+        "imageUrls": NotRequired[list[str]],
+        "mask": NotRequired[str],
+        "boundingBoxes": NotRequired[list[Flux31ImageBoundingBoxes]],
+        "grounding": NotRequired[Literal["auto", "force", "off"]],
+        "outputFormat": NotRequired[Literal["jpeg", "png"]],
+        "safetyTolerance": NotRequired[float],
     },
 )
 
@@ -4333,6 +4365,7 @@ TypedModelId = Literal[
     "flux-3-max",
     "flux-3-max-keyframes",
     "flux-3-video",
+    "flux-3.1-image",
     "flux-kontext-max",
     "flux-kontext-pro",
     "flux-lip-sync",
@@ -4698,6 +4731,7 @@ ModelInputById = TypedDict(
         "flux-3-max": Flux3MaxInput,
         "flux-3-max-keyframes": Flux3MaxKeyframesInput,
         "flux-3-video": Flux3VideoInput,
+        "flux-3.1-image": Flux31ImageInput,
         "flux-kontext-max": FluxKontextMaxInput,
         "flux-kontext-pro": FluxKontextProInput,
         "flux-lip-sync": FluxLipSyncInput,
